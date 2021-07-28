@@ -5,23 +5,97 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spaceman</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
     <header>
 
     </header>
-    <!-- This section displays the progress of the rocket ship as it builds representing players incorrect guesses -->
-    <section class="rocket">
-
+    <!-- Ship launch progress -->
+    <section class="rocket box-shadow container-dark-background">
+        <div class="counter">10</div>
     </section>
-    <!-- This section shows the number of letters in the word the player needs to guess and displays where any correctly guessed letters appear -->
-    <section class="">
-
+    <!-- Target word -->
+    <section class="box-shadow container-dark-background">
+        <div class="target-word"></div>
     </section>
     <!-- letter selection -->
-    <section class="letter-selection">
-
+    <section class="letter-selection box-shadow container-dark-background">
+        <table>
+            <tr class="letters-row">
+                <td class="letter tile active">Q</td>
+                <td class="letter tile active">W</td>
+                <td class="letter tile active">E</td>
+                <td class="letter tile active">R</td>
+                <td class="letter tile active">T</td>
+                <td class="letter tile active">Y</td>
+                <td class="letter tile active">U</td>
+                <td class="letter tile active">I</td>
+                <td class="letter tile active">O</td>
+                <td class="letter tile active">P</td>
+            </tr>
+            <tr class="letters-row">
+                <td class="letter tile active">A</td>
+                <td class="letter tile active">S</td>
+                <td class="letter tile active">D</td>
+                <td class="letter tile active">F</td>
+                <td class="letter tile active">G</td>
+                <td class="letter tile active">H</td>
+                <td class="letter tile active">J</td>
+                <td class="letter tile active">K</td>
+                <td class="letter tile active">L</td>
+            </tr>
+            <tr class="letters-row">
+                <td class="letter tile active">Z</td>
+                <td class="letter tile active">X</td>
+                <td class="letter tile active">C</td>
+                <td class="letter tile active">V</td>
+                <td class="letter tile active">B</td>
+                <td class="letter tile active">N</td>
+                <td class="letter tile active">M</td>
+            </tr>
+        </table>
+        
+        
+        
+        <!-- <div class="letters-row">
+            <div class="letter">Q</div>
+            <div class="letter">W</div>
+            <div class="letter">E</div>
+            <div class="letter ">R</div>
+            <div class="letter ">T</div>
+            <div class="letter ">Y</div>
+            <div class="letter ">U</div>
+            <div class="letter ">I</div>
+            <div class="letter ">O</div>
+            <div class="letter ">P</div>
+        </div>
+        <div class="letters-row">
+            <div class="letter ">A</div>
+            <div class="letter ">S</div>
+            <div class="letter ">D</div>
+            <div class="letter ">F</div>
+            <div class="letter ">G</div>
+            <div class="letter ">H</div>
+            <div class="letter ">J</div>
+            <div class="letter ">K</div>
+            <div class="letter ">L</div>
+        </div>
+        <div class="letters-row">
+            <div class="letter ">Z</div>
+            <div class="letter ">X</div>
+            <div class="letter ">C</div>
+            <div class="letter ">V</div>
+            <div class="letter ">B</div>
+            <div class="letter ">N</div>
+            <div class="letter ">M</div>
+        </div> -->
+        
     </section>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script type="module" src="assets/js/index.js"></script>
 </body>
 </html>

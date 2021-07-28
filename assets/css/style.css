@@ -1,0 +1,51 @@
+/* general stlying rules */
+
+body {
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    background: #121743;
+}
+
+/* Colours */
+
+.box-shadow {
+    border-radius: 30px;
+    background: linear-gradient(145deg, #090c24, #0b0e2b);
+    box-shadow:  25px 25px 51px #040510,
+             -25px -25px 51px #101540;  
+}
+
+.container-dark-background {
+    background: #0A0D28;
+}
+
+/* Game elements */
+
+.letter-selection {
+    width: 80vw;
+    height: 40vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}
+
+.rocket {
+    height: 50vh;
+    width: 60vw;
+    margin: 2rem;
+}
+
+table > tr {
+    margin: 0 auto;
+}
+
+.tile {
+    height: 50px;
+    width: 50px;
+    background: #f8f8f8;
+    margin: 5px;
+}
+
+.letters-row {
+    margin-top: 5px;
+}
