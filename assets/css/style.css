@@ -4,6 +4,8 @@ body {
     text-align: center;
     font-family: 'Roboto Mono', monospace;
     background: #121743;
+    color: #222224;
+    font-size: 2rem;
 }
 
 /* Colours */
@@ -20,32 +22,45 @@ body {
 }
 
 /* Game elements */
-
+/* Keyboard */
 .letter-selection {
-    width: 80vw;
-    height: 40vh; 
+    width: fit-content;
+    height: fit-content; 
+    padding: 20px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;  
 }
 
+.tile {
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    margin: 10px;
+    border-radius: 6px;
+    background: #d3d5e2;
+    box-shadow:  5px 5px 9px #040510,
+             -5px -5px 9px #101540;
+}
+
+.letters-row {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Rocket */
 .rocket {
     height: 50vh;
     width: 60vw;
     margin: 2rem;
 }
 
-table > tr {
-    margin: 0 auto;
-}
+/* Terget word */
 
-.tile {
-    height: 50px;
-    width: 50px;
-    background: #f8f8f8;
-    margin: 5px;
-}
-
-.letters-row {
-    margin-top: 5px;
+.target-word {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
