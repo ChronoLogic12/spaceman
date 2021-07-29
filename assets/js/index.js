@@ -1,5 +1,5 @@
 //import array of words to guess
-import words from "./words.js";
+import words from "/assets/js/words.js";
 
 //global variables
 
@@ -12,13 +12,17 @@ let prevGuesses = [];
 let setTargetWord = () => {
     word = words[Math.floor(Math.random()*words.length)];
     word.split('').forEach(char => {
-        currentGuess.push("<div class='tile inactive'>_</div>");
+        if (char.match(/[a-z]/g)) {
+            currentGuess.push("<div class='tile inactive'>_</div>");
+        } else {
+            currentGuess.push(`<div class='tile active'>${char}</div>`);
+        }
     });
     updateCurrentGuess();
     subtractOneFromCountdown();
 }
 
-// update current guess
+//update current guess
 
 let updateCurrentGuess = () => {
     $(".target-word").empty();
@@ -50,8 +54,34 @@ let checkSelectedLetter = (event) => {
         subtractOneFromCountdown();
     }
     updateCurrentGuess();
+    checkGameState();
 }
 
+//check game state
+
+let checkGameState = () => {
+    
+    console.log($(".target-word"))
+    if (parseInt($(".counter").text()) === 0) {
+        gameStateLose();
+    } else if (!$(".target-word")[0].innerText.match(/[_]/g)) {
+        gameStateWin();
+    }
+}
+
+//game state WIN
+
+let gameStateWin = () => {
+    alert("you win!");
+}
+
+//game state LOSE
+
+let gameStateLose = () => {
+    alert("you lose!");
+}
+
+//event listeners 
 $(".letter").click(function(event) {
     checkSelectedLetter(event)
 });
