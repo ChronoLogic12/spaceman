@@ -8,12 +8,18 @@ body {
     font-size: 2rem;
 }
 
+h1 {
+    color: #d3d5e2;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
 /* Colours */
 
 .box-shadow {
     border-radius: 10px;
-background: #12133a;
-box-shadow:  5px 5px 10px #070817,
+    background: #12133a;
+    box-shadow:  5px 5px 10px #070817,
              -5px -5px 10px #1d1e5d; 
 }
 
@@ -48,9 +54,6 @@ box-shadow:  5px 5px 10px #070817,
     line-height: 50px;
     margin: 10px;
     border-radius: 6px;
-    background: #d3d5e2;
-    box-shadow:  5px 5px 9px #040510,
-             -5px -5px 9px #101540;
     transition: all 0.2s ease-in-out;
 }
 
@@ -58,6 +61,19 @@ box-shadow:  5px 5px 10px #070817,
     margin-top: 5px;
     display: flex;
     flex-direction: row;
+}
+
+.active {
+    background: #d3d5e2;
+    box-shadow:  5px 5px 9px #040510,
+             -5px -5px 9px #101540;
+    
+}
+
+.inactive {
+    background: #727379;
+    box-shadow:  5px 5px 9px #040510,
+             -5px -5px 9px #101540;
 }
 
 /* Rocket */
