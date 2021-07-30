@@ -60,8 +60,6 @@ let checkSelectedLetter = (event) => {
 //check game state
 
 let checkGameState = () => {
-    
-    console.log($(".target-word"))
     if (parseInt($(".counter").text()) === 0) {
         gameStateLose();
     } else if (!$(".target-word")[0].innerText.match(/[_]/g)) {
@@ -81,9 +79,28 @@ let gameStateLose = () => {
     alert("you lose!");
 }
 
+//rest game
+
+let resetGame = () => {
+    word = "";
+    currentGuess = [];
+    prevGuesses = [];
+    $(".letter").addClass("active");
+    $(".letter").removeClass("inactive");
+    $(".counter").text(10);
+    setTargetWord();
+}
+
 //event listeners 
+//keyboard letters
 $(".letter").click(function(event) {
     checkSelectedLetter(event)
 });
+
+//reset button
+$("#restart").click(function() {
+    resetGame();
+})
+
 
 setTargetWord();

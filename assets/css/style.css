@@ -30,9 +30,25 @@ h1 {
 /* Hover effects */
 
 .active:hover {
-    background: #f8f8f8;
+    background: #fff;
     box-shadow:  5px 5px 9px #151a50,
-             -5px -5px 9px #2c3269;
+             -5px -5px 9px #363c74;
+}
+
+/* Nav */
+
+nav {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    display: block;
+}
+
+button {
+    font-size: 1.5rem;
+    line-height: 1.5rem !important;
+    text-align: center;
+    border: none;
 }
 
 /* Game elements */
@@ -78,8 +94,8 @@ h1 {
 
 /* Rocket */
 .rocket {
-    height: 50vh;
-    width: 60vw;
+    height: 60vh;
+    width: 40vw;
     margin: 2rem;
     margin: auto;
 }
