@@ -46,4 +46,4 @@ const words = [
     "pluto",
 ];
 
-export default words;
+module.exports = words;
