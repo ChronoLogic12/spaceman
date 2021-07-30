@@ -24,3 +24,8 @@
   * I want the all aspects to be age appropriate for a younger player.
   * I want the game to have some educational value.
   * I want the game to be chalenging enough for my dependant but achievable. 
+
+  ## Credits 
+
+  
+  ### Calapsable modal was designed with help for [this article](https://www.w3schools.com/howto/howto_css_modals.asp) on W3schools
