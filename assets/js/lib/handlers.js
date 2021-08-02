@@ -2,7 +2,8 @@ const {
     updateCurrentGuess,
     subtractOneFromCountdown,
     gameStateLose,
-    gameStateWin
+    gameStateWin,
+    createKeyboard,
 } = require('./helpers');
 
 let {
@@ -23,8 +24,6 @@ let setTargetWord = () => {
             currentGuess.push(`<div class='tile active'>${char}</div>`);
         };
     });
-    updateCurrentGuess(currentGuess);
-    subtractOneFromCountdown();
 };
 
 //check game state
@@ -67,8 +66,17 @@ let resetGame = () => {
     $(".letter").addClass("active");
     $(".letter").removeClass("inactive");
     $(".counter").text(10);
-    setTargetWord();
+    initialiseGame();
 };
+
+//initialise game
+
+let initialiseGame = () => {
+    setTargetWord();
+    createKeyboard();
+    updateCurrentGuess(currentGuess);
+    subtractOneFromCountdown();
+}
 
 //event listeners 
 
@@ -98,11 +106,11 @@ let bindModalHandlers = () => {
     });
 };
 
-function initPageBindings() {
+let initPageBindings = () => {
     bindLetterHandlers();
     bindRestartHandler();
-    setTargetWord();
     bindModalHandlers();
+    initialiseGame();
 };
 
 module.exports = initPageBindings;

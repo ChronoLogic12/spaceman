@@ -12,6 +12,45 @@ let subtractOneFromCountdown = () => {
     $(".counter").text(--currentCount);
 };
 
+//set letter selection keyboard html 
+
+let createKeyboard = () => {
+    $(".letter-selection").empty();
+    $(".letter-selection").append(`
+        <div class="letters-row">
+            <button class="letter tile active">Q</button>
+            <button class="letter tile active">W</button>
+            <button class="letter tile active">E</button>
+            <button class="letter tile active">R</button>
+            <button class="letter tile active">T</button>
+            <button class="letter tile active">Y</button>
+            <button class="letter tile active">U</button>
+            <button class="letter tile active">I</button>
+            <button class="letter tile active">O</button>
+            <button class="letter tile active">P</button>
+        </div>
+        <div class="letters-row">
+            <button class="letter tile active">A</button>
+            <button class="letter tile active">S</button>
+            <button class="letter tile active">D</button>
+            <button class="letter tile active">F</button>
+            <button class="letter tile active">G</button>
+            <button class="letter tile active">H</button>
+            <button class="letter tile active">J</button>
+            <button class="letter tile active">K</button>
+            <button class="letter tile active">L</button>
+        </div>
+        <div class="letters-row">
+            <button class="letter tile active">Z</button>
+            <button class="letter tile active">X</button>
+            <button class="letter tile active">C</button>
+            <button class="letter tile active">V</button>
+            <button class="letter tile active">B</button>
+            <button class="letter tile active">N</button>
+            <button class="letter tile active">M</button>
+        </div>`);
+};
+
 //game state WIN
 
 let gameStateWin = () => {
@@ -35,4 +74,5 @@ module.exports = {
     subtractOneFromCountdown,
     gameStateLose,
     gameStateWin,
+    createKeyboard,
 };
