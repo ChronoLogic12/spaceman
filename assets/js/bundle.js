@@ -1,118 +1,16 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-//import array of words to guess
-const words = require("./words.js");
+const initPageBindings = require('./lib/handlers')
 
+// bind event listeners once dom content is loaded
+
+$(document).ready(initPageBindings);
+},{"./lib/handlers":3}],2:[function(require,module,exports){
 //global variables
 
 let word = "";
 let currentGuess = [];
 let prevGuesses = [];
 
-//select random word and set 
-
-let setTargetWord = () => {
-    word = words[Math.floor(Math.random()*words.length)];
-    word.split('').forEach(char => {
-        if (char.match(/[a-z]/g)) {
-            currentGuess.push("<div class='tile inactive'>_</div>");
-        } else {
-            currentGuess.push(`<div class='tile active'>${char}</div>`);
-        }
-    });
-    updateCurrentGuess();
-    subtractOneFromCountdown();
-}
-
-//update current guess
-
-let updateCurrentGuess = () => {
-    $(".target-word").empty();
-    $(".target-word").append(`${currentGuess.join("")}`);
-}
-
-//update countdown
-
-let subtractOneFromCountdown = () => {
-    let currentCount = parseInt($(".counter").text());
-    $(".counter").text(--currentCount);
-}
-
-//check word contains selected letter
-
-let checkSelectedLetter = (event) => {
-    if (prevGuesses.includes(event.target.innerText)) {
-        return;
-    }
-    prevGuesses.push(event.target.innerText);
-    event.target.classList.toggle("active");
-    event.target.classList.toggle("inactive");
-    for (let i=0; i< word.length; i++) {
-        if (word[i].toUpperCase() === event.target.innerText) {
-            currentGuess[i] = `<div class='tile active'>${word[i].toUpperCase()}</div>` ;
-        }
-    }
-    if (!word.toUpperCase().includes(event.target.innerText)) {
-        subtractOneFromCountdown();
-    }
-    updateCurrentGuess();
-    checkGameState();
-}
-
-//check game state
-
-let checkGameState = () => {
-    if (parseInt($(".counter").text()) === 0) {
-        gameStateLose();
-    } else if (!$(".target-word")[0].innerText.match(/[_]/g)) {
-        gameStateWin();
-    }
-}
-
-//game state WIN
-
-let gameStateWin = () => {
-    alert("you win!");
-}
-
-//game state LOSE
-
-let gameStateLose = () => {
-    let completeWordHtml= [];
-    word.split("").forEach(char => {
-        completeWordHtml.push(`<div class='tile active'>${char.toUpperCase()}</div>`);
-    });
-    $(".target-word").empty();
-    $(".target-word").append(`${completeWordHtml.join("")}`);
-    alert("you lose!");
-}
-
-//rest game
-
-let resetGame = () => {
-    word = "";
-    currentGuess = [];
-    prevGuesses = [];
-    $(".letter").addClass("active");
-    $(".letter").removeClass("inactive");
-    $(".counter").text(10);
-    setTargetWord();
-}
-
-//event listeners 
-//keyboard letters
-$(".letter").click(function(event) {
-    checkSelectedLetter(event)
-});
-
-//reset button
-$("#restart").click(function() {
-    resetGame();
-})
-
-
-setTargetWord();
-
-},{"./words.js":2}],2:[function(require,module,exports){
 const words = [
     "space",
     "nebular",
@@ -161,5 +59,158 @@ const words = [
     "pluto",
 ];
 
-module.exports = words;
+module.exports = {
+    words,
+    word,
+    currentGuess,
+    prevGuesses
+};
+},{}],3:[function(require,module,exports){
+const {
+    updateCurrentGuess,
+    subtractOneFromCountdown,
+    gameStateLose,
+    gameStateWin
+} = require('./helpers');
+
+let {
+    word,
+    currentGuess,
+    prevGuesses,
+    words
+} = require('./data');
+
+//select random word and set 
+
+let setTargetWord = () => {
+    word = words[Math.floor(Math.random() * words.length)];
+    word.split('').forEach(char => {
+        if (char.match(/[a-z]/g)) {
+            currentGuess.push("<div class='tile inactive'>_</div>");
+        } else {
+            currentGuess.push(`<div class='tile active'>${char}</div>`);
+        };
+    });
+    updateCurrentGuess(currentGuess);
+    subtractOneFromCountdown();
+};
+
+//check game state
+
+let checkGameState = (word) => {
+    if (parseInt($(".counter").text()) === 0) {
+        gameStateLose(word);
+    } else if (!$(".target-word")[0].innerText.match(/[_]/g)) {
+        gameStateWin(word);
+    };
+};
+
+//check word contains selected letter
+
+let checkSelectedLetter = (event) => {
+    if (prevGuesses.includes(event.target.innerText)) {
+        return;
+    };
+    prevGuesses.push(event.target.innerText);
+    event.target.classList.toggle("active");
+    event.target.classList.toggle("inactive");
+    for (let i = 0; i < word.length; i++) {
+        if (word[i].toUpperCase() === event.target.innerText) {
+            currentGuess[i] = `<div class='tile active'>${word[i].toUpperCase()}</div>`;
+        };
+    };
+    if (!word.toUpperCase().includes(event.target.innerText)) {
+        subtractOneFromCountdown();
+    };
+    updateCurrentGuess(currentGuess);
+    checkGameState(word);
+};
+
+//reset game
+
+let resetGame = () => {
+    word = "";
+    currentGuess = [];
+    prevGuesses = [];
+    $(".letter").addClass("active");
+    $(".letter").removeClass("inactive");
+    $(".counter").text(10);
+    setTargetWord();
+};
+
+//event listeners 
+
+let bindLetterHandlers = () => {
+    //keyboard letters
+    $(".letter").click(function (event) {
+        checkSelectedLetter(event)
+    });
+};
+
+let bindRestartHandler = () => {
+    //reset button
+    $("#restart").click(function () {
+        resetGame();
+    });
+};
+
+let bindModalHandlers = () => {
+    //open modal button
+    $("#info").click(function () {
+        $("#modal").toggle();
+    });
+
+    //close modal
+    $($("#modal")).click(function (event) {
+        $("#modal").toggle();
+    });
+};
+
+function initPageBindings() {
+    bindLetterHandlers();
+    bindRestartHandler();
+    setTargetWord();
+    bindModalHandlers();
+};
+
+module.exports = initPageBindings;
+},{"./data":2,"./helpers":4}],4:[function(require,module,exports){
+//update current guess
+
+let updateCurrentGuess = (guess) => {
+    $(".target-word").empty();
+    $(".target-word").append(`${guess.join("")}`);
+};
+
+//update countdown
+
+let subtractOneFromCountdown = () => {
+    let currentCount = parseInt($(".counter").text());
+    $(".counter").text(--currentCount);
+};
+
+//game state WIN
+
+let gameStateWin = () => {
+    alert("you win!");
+};
+
+//game state LOSE
+
+let gameStateLose = (word) => {
+    let completeWordHtml = [];
+    word.split("").forEach(char => {
+        completeWordHtml.push(`<div class='tile active'>${char.toUpperCase()}</div>`);
+    });
+    $(".target-word").empty();
+    $(".target-word").append(`${completeWordHtml.join("")}`);
+    alert("you lose!");
+};
+
+module.exports = {
+    updateCurrentGuess,
+    subtractOneFromCountdown,
+    gameStateLose,
+    gameStateWin,
+};
 },{}]},{},[1]);

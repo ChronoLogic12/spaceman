@@ -1,3 +1,9 @@
+//global variables
+
+let word = "";
+let currentGuess = [];
+let prevGuesses = [];
+
 const words = [
     "space",
     "nebular",
@@ -46,4 +52,9 @@ const words = [
     "pluto",
 ];
 
-module.exports = words;
+module.exports = {
+    words,
+    word,
+    currentGuess,
+    prevGuesses
+};
