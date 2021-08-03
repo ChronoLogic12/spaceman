@@ -4,6 +4,9 @@ const {
     gameStateLose,
     gameStateWin,
     createKeyboard,
+    createStartGameScreen,
+    createWinScreen,
+    createLossScreen,
 } = require('./helpers');
 
 let {
@@ -67,13 +70,15 @@ let resetGame = () => {
     $(".letter").removeClass("inactive");
     $(".counter").text(10);
     initialiseGame();
+    createKeyboard();
+    bindLetterHandlers();
 };
 
 //initialise game
 
 let initialiseGame = () => {
     setTargetWord();
-    createKeyboard();
+    createStartGameScreen();
     updateCurrentGuess(currentGuess);
     subtractOneFromCountdown();
 }
@@ -86,6 +91,12 @@ let bindLetterHandlers = () => {
         checkSelectedLetter(event)
     });
 };
+
+let bindGameStartHandler = () => {
+    $(".start-game").click(function () {
+        resetGame();
+    })
+}
 
 let bindRestartHandler = () => {
     //reset button
@@ -107,10 +118,12 @@ let bindModalHandlers = () => {
 };
 
 let initPageBindings = () => {
+    initialiseGame();
+    bindGameStartHandler();
     bindLetterHandlers();
     bindRestartHandler();
     bindModalHandlers();
-    initialiseGame();
+
 };
 
 module.exports = initPageBindings;

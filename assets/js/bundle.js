@@ -72,6 +72,9 @@ const {
     gameStateLose,
     gameStateWin,
     createKeyboard,
+    createStartGameScreen,
+    createWinScreen,
+    createLossScreen,
 } = require('./helpers');
 
 let {
@@ -135,13 +138,15 @@ let resetGame = () => {
     $(".letter").removeClass("inactive");
     $(".counter").text(10);
     initialiseGame();
+    createKeyboard();
+    bindLetterHandlers();
 };
 
 //initialise game
 
 let initialiseGame = () => {
     setTargetWord();
-    createKeyboard();
+    createStartGameScreen();
     updateCurrentGuess(currentGuess);
     subtractOneFromCountdown();
 }
@@ -154,6 +159,12 @@ let bindLetterHandlers = () => {
         checkSelectedLetter(event)
     });
 };
+
+let bindGameStartHandler = () => {
+    $(".start-game").click(function () {
+        resetGame();
+    })
+}
 
 let bindRestartHandler = () => {
     //reset button
@@ -175,10 +186,12 @@ let bindModalHandlers = () => {
 };
 
 let initPageBindings = () => {
+    initialiseGame();
+    bindGameStartHandler();
     bindLetterHandlers();
     bindRestartHandler();
     bindModalHandlers();
-    initialiseGame();
+
 };
 
 module.exports = initPageBindings;
@@ -197,7 +210,7 @@ let subtractOneFromCountdown = () => {
     $(".counter").text(--currentCount);
 };
 
-//set letter selection keyboard html 
+//set letter selection keyboard HTML 
 
 let createKeyboard = () => {
     $(".letter-selection").empty();
@@ -236,10 +249,37 @@ let createKeyboard = () => {
         </div>`);
 };
 
+//Start game/page load HTML
+
+let createStartGameScreen = () => {
+    $(".letter-selection").empty();
+    $(".letter-selection").append(`
+    <h2>Ready?</h2>
+    <button class="start-game">Start Game</button>`);
+};
+
+//Game win state HTML
+
+let createWinScreen = () => {
+    $(".letter-selection").empty();
+    $(".letter-selection").append(`
+    <h2>You Win!</h2>
+    <button class="restart">Play again?</button>`);
+};
+
+//Game loss state HTML
+
+let createLossScreen = () => {
+    $(".letter-selection").empty();
+    $(".letter-selection").append(`
+    <h2>Game Over!</h2>
+    <button class="restart">Try again?</button>`);
+};
+
 //game state WIN
 
 let gameStateWin = () => {
-    alert("you win!");
+    createWinScreen();
 };
 
 //game state LOSE
@@ -251,7 +291,7 @@ let gameStateLose = (word) => {
     });
     $(".target-word").empty();
     $(".target-word").append(`${completeWordHtml.join("")}`);
-    alert("you lose!");
+    createLossScreen();
 };
 
 module.exports = {
@@ -260,5 +300,8 @@ module.exports = {
     gameStateLose,
     gameStateWin,
     createKeyboard,
+    createStartGameScreen,
+    createWinScreen,
+    createLossScreen,
 };
 },{}]},{},[1]);
