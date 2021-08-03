@@ -15,8 +15,8 @@ let subtractOneFromCountdown = () => {
 //set letter selection keyboard HTML 
 
 let createKeyboard = () => {
-    $(".letter-selection").empty();
-    $(".letter-selection").append(`
+    $(".game-controls").empty();
+    $(".game-controls").append(`
         <div class="letters-row">
             <button class="letter tile active">Q</button>
             <button class="letter tile active">W</button>
@@ -54,8 +54,8 @@ let createKeyboard = () => {
 //Start game/page load HTML
 
 let createStartGameScreen = () => {
-    $(".letter-selection").empty();
-    $(".letter-selection").append(`
+    $(".game-controls").empty();
+    $(".game-controls").append(`
     <h2>Ready?</h2>
     <button class="start-game">Start Game</button>`);
 };
@@ -63,8 +63,8 @@ let createStartGameScreen = () => {
 //Game win state HTML
 
 let createWinScreen = () => {
-    $(".letter-selection").empty();
-    $(".letter-selection").append(`
+    $(".game-controls").empty();
+    $(".game-controls").append(`
     <h2>You Win!</h2>
     <button class="restart">Play again?</button>`);
 };
@@ -72,35 +72,15 @@ let createWinScreen = () => {
 //Game loss state HTML
 
 let createLossScreen = () => {
-    $(".letter-selection").empty();
-    $(".letter-selection").append(`
+    $(".game-controls").empty();
+    $(".game-controls").append(`
     <h2>Game Over!</h2>
     <button class="restart">Try again?</button>`);
-};
-
-//game state WIN
-
-let gameStateWin = () => {
-    createWinScreen();
-};
-
-//game state LOSE
-
-let gameStateLose = (word) => {
-    let completeWordHtml = [];
-    word.split("").forEach(char => {
-        completeWordHtml.push(`<div class='tile active'>${char.toUpperCase()}</div>`);
-    });
-    $(".target-word").empty();
-    $(".target-word").append(`${completeWordHtml.join("")}`);
-    createLossScreen();
 };
 
 module.exports = {
     updateCurrentGuess,
     subtractOneFromCountdown,
-    gameStateLose,
-    gameStateWin,
     createKeyboard,
     createStartGameScreen,
     createWinScreen,

@@ -13,9 +13,12 @@ body {
     -ms-user-select: none;
 }
 
-h1 {
+h1,
+h2 {
     color: #d3d5e2;
-    font-size: 2rem;
+    font-size: 3rem;
+    line-height: 3rem;
+    font-weight: 300;
     text-transform: uppercase;
 }
 
@@ -81,9 +84,9 @@ nav>button {
 
 /* Game elements */
 /* Keyboard */
-.letter-selection {
-    width: fit-content;
-    height: fit-content;
+.game-controls {
+    width: 700px;
+    height: 225px;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -120,6 +123,20 @@ nav>button {
     background: #727379;
     box-shadow: 5px 5px 9px #040510,
         -5px -5px 9px #101540;
+}
+
+/* Start/Win/Loss screens */
+
+.game-controls .restart,
+.start-game {
+    height: 50px;
+    width: fit-content;
+    margin: 10px;
+    border-radius: 6px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2rem;
+    transition: all 0.2s ease-in-out;
+    border: none;
 }
 
 /* Rocket */

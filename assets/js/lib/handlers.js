@@ -1,8 +1,6 @@
 const {
     updateCurrentGuess,
     subtractOneFromCountdown,
-    gameStateLose,
-    gameStateWin,
     createKeyboard,
     createStartGameScreen,
     createWinScreen,
@@ -74,6 +72,26 @@ let resetGame = () => {
     bindLetterHandlers();
 };
 
+//game state WIN
+
+let gameStateWin = () => {
+    createWinScreen();
+    bindRestartHandlers();
+};
+
+//game state LOSE
+
+let gameStateLose = (word) => {
+    let completeWordHtml = [];
+    word.split("").forEach(char => {
+        completeWordHtml.push(`<div class='tile active'>${char.toUpperCase()}</div>`);
+    });
+    $(".target-word").empty();
+    $(".target-word").append(`${completeWordHtml.join("")}`);
+    createLossScreen();
+    bindRestartHandlers();
+};
+
 //initialise game
 
 let initialiseGame = () => {
@@ -94,13 +112,14 @@ let bindLetterHandlers = () => {
 
 let bindGameStartHandler = () => {
     $(".start-game").click(function () {
-        resetGame();
-    })
-}
+        createKeyboard();
+        bindLetterHandlers();
+    });
+};
 
-let bindRestartHandler = () => {
+let bindRestartHandlers = () => {
     //reset button
-    $("#restart").click(function () {
+    $(".restart").click(function () {
         resetGame();
     });
 };
@@ -121,9 +140,8 @@ let initPageBindings = () => {
     initialiseGame();
     bindGameStartHandler();
     bindLetterHandlers();
-    bindRestartHandler();
+    bindRestartHandlers();
     bindModalHandlers();
-
 };
 
 module.exports = initPageBindings;
