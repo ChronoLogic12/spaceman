@@ -141,10 +141,11 @@ nav>button {
 
 /* Rocket */
 .rocket {
-    height: 60vh;
-    width: 40vw;
+    height: 800px;
+    width: 620px;
     margin: 2rem;
     margin: auto;
+    background-image: url(/assets/images/stars-only.gif)
 }
 
 /* Terget word */
