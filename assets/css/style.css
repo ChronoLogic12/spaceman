@@ -145,7 +145,7 @@ nav>button {
     width: 620px;
     margin: 2rem;
     margin: auto;
-    background-image: url(/assets/images/stars-only.gif)
+    background-image: url("/assets/images/stars-only.gif")
 }
 
 /* Terget word */
