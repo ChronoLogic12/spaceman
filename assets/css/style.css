@@ -145,7 +145,7 @@ nav>button {
     width: 620px;
     margin: 2rem;
     margin: auto;
-    background-image: url("/assets/images/stars-only.gif");
+    background-image: url("https://res.cloudinary.com/chronologic12/image/upload/v1628162423/Spaceman/stars-only_i2y1sz.gif");
     display: flex;
     align-items: center;
     flex-direction: column;
