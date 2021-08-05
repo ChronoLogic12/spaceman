@@ -145,7 +145,16 @@ nav>button {
     width: 620px;
     margin: 2rem;
     margin: auto;
-    background-image: url("/assets/images/stars-only.gif")
+    background-image: url("/assets/images/stars-only.gif");
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.rocket img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
 }
 
 /* Terget word */
@@ -170,4 +179,5 @@ nav>button {
 
 .counter {
     color: #d3d5e2;
+    position: absolute;
 }
