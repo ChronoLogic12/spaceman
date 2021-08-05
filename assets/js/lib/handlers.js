@@ -66,7 +66,7 @@ let resetGame = () => {
     prevGuesses = [];
     $(".letter").addClass("active");
     $(".letter").removeClass("inactive");
-    $(".counter").text(10);
+    $(".counter").text(9);
     initialiseGame();
     createKeyboard();
     bindLetterHandlers();
@@ -98,7 +98,7 @@ let initialiseGame = () => {
     setTargetWord();
     createStartGameScreen();
     updateCurrentGuess(currentGuess);
-    subtractOneFromCountdown();
+    // subtractOneFromCountdown();
 }
 
 //event listeners 
@@ -114,6 +114,7 @@ let bindGameStartHandler = () => {
     $(".start-game").click(function () {
         createKeyboard();
         bindLetterHandlers();
+        subtractOneFromCountdown();
     });
 };
 

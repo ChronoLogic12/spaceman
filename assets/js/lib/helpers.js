@@ -75,7 +75,7 @@ let createLossScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
     <h2>Game Over!</h2>
-    <button class="restart">Try again?</button>`);
+    <button class="restart button">Try again?</button>`);
 };
 
 module.exports = {
