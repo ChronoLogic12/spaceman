@@ -127,7 +127,8 @@ nav>button {
 
 /* Start/Win/Loss screens */
 
-.button {
+.button,
+a {
     height: 50px;
     width: fit-content;
     margin: 10px;
@@ -136,6 +137,12 @@ nav>button {
     font-size: 2rem;
     transition: all 0.2s ease-in-out;
     border: none;
+    color: #222224;
+    text-decoration: none;
+}
+
+a {
+    padding: 4px;
 }
 
 /* Rocket */
