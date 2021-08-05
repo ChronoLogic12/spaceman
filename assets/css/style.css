@@ -19,7 +19,7 @@ h2 {
     font-size: 3rem;
     line-height: 3rem;
     font-weight: 300;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 /* Colours */
@@ -127,8 +127,7 @@ nav>button {
 
 /* Start/Win/Loss screens */
 
-.game-controls .restart,
-.start-game {
+.button {
     height: 50px;
     width: fit-content;
     margin: 10px;
@@ -180,4 +179,21 @@ nav>button {
 .counter {
     color: #d3d5e2;
     position: absolute;
+}
+
+/* error 404 */
+
+.error-404 {
+    height: fit-content;
+    width: 30vw;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.error-404 p {
+    color: #d3d5e2;
+}
+
+.error-404 h1 {
+    font-size: 4rem;
 }

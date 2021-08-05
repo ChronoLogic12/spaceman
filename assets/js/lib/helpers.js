@@ -57,7 +57,7 @@ let createStartGameScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
     <h2>Ready?</h2>
-    <button class="start-game">Start Game</button>`);
+    <button class="start-game button active">Start Game</button>`);
 };
 
 //Game win state HTML
@@ -66,7 +66,7 @@ let createWinScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
     <h2>You Win!</h2>
-    <button class="restart">Play again?</button>`);
+    <button class="restart button active">Play again?</button>`);
 };
 
 //Game loss state HTML
