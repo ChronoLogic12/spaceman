@@ -33,18 +33,22 @@
             <p>Some text about how the game works...</p>
         </section>
     </div>
-    <!-- Ship launch progress -->
-    <section class="rocket box-shadow container-dark-background">
-        <div class="counter">10</div>
-        <img src="https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png">
-    </section>
-    <!-- Target word -->
-    <section class="target-word-container box-shadow container-dark-background">
-        <div class="target-word"></div>
-    </section>
-    <!-- Game controls -->
-    <section class="game-controls box-shadow container-dark-background">
-    </section>
+    <div class="container">
+        <!-- Ship launch progress -->
+        <section class="rocket box-shadow container-dark-background">
+            <!-- <span>T Minus: </span> -->
+            <div class="counter">10</div>
+            <img class="rocket-image"
+                src="https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png">
+        </section>
+        <!-- Target word -->
+        <section class="target-word-container box-shadow container-dark-background">
+            <div class="target-word"></div>
+        </section>
+        <!-- Game controls -->
+        <section class="game-controls box-shadow container-dark-background">
+        </section>
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script type="module" src="assets/js/bundle.js"></script>

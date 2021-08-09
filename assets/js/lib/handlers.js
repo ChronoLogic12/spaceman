@@ -5,6 +5,7 @@ const {
     createStartGameScreen,
     createWinScreen,
     createLossScreen,
+    changeRocketImage,
 } = require('./helpers');
 
 let {
@@ -30,9 +31,22 @@ let setTargetWord = () => {
 //check game state
 
 let checkGameState = (word) => {
-    if (parseInt($(".counter").text()) === 0) {
+    let currentCount = parseInt($(".counter").text());
+    if (currentCount === 10 || currentCount === 9) {
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png");
+    } else if (currentCount === 8 || currentCount === 7) {
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-lights_bgixsk.png");
+    } else if (currentCount === 6 || currentCount === 5) {
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke1_q2y1k1.png");
+    } else if (currentCount === 4 || currentCount === 3) {
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke2_zzibv3.png");
+    } else if (currentCount === 2 || currentCount === 1) {
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_4-blast-off_tcorpn.png");
+    } else if (currentCount === 0) {
         gameStateLose(word);
-    } else if (!$(".target-word")[0].innerText.match(/[_]/g)) {
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628170306/Spaceman/rocket404_ybnyvn.png");
+    };
+    if (!$(".target-word")[0].innerText.match(/[_]/g)) {
         gameStateWin(word);
     };
 };
@@ -68,6 +82,7 @@ let resetGame = () => {
     $(".letter").removeClass("inactive");
     $(".counter").text(9);
     initialiseGame();
+    checkGameState();
     createKeyboard();
     bindLetterHandlers();
 };

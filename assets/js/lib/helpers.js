@@ -78,6 +78,12 @@ let createLossScreen = () => {
     <button class="restart button">Try again?</button>`);
 };
 
+//change rocket image src 
+
+let changeRocketImage = (url) => {
+    $(".rocket-image").attr("src", url);
+}
+
 module.exports = {
     updateCurrentGuess,
     subtractOneFromCountdown,
@@ -85,4 +91,5 @@ module.exports = {
     createStartGameScreen,
     createWinScreen,
     createLossScreen,
+    changeRocketImage,
 };
