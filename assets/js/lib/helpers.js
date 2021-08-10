@@ -1,19 +1,19 @@
-//update current guess
-
+/**
+ * @description replaces the contents of the "target-word" element.
+ * @param {Array} guess The players current guess.
+ */
 let updateCurrentGuess = (guess) => {
     $(".target-word").empty();
     $(".target-word").append(`${guess.join("")}`);
 };
 
-//update countdown
-
+//Subtracts one from the failed attempts counter.  
 let subtractOneFromCountdown = () => {
     let currentCount = parseInt($(".counter").text());
     $(".counter").text(--currentCount);
 };
 
-//set letter selection keyboard HTML 
-
+//Replaces the contents of the "game-controls" element with the interactive keyboard html. 
 let createKeyboard = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
@@ -51,8 +51,7 @@ let createKeyboard = () => {
         </div>`);
 };
 
-//Start game/page load HTML
-
+//Replaces the contents of the "game-controls" element with the "start game" html.
 let createStartGameScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
@@ -60,8 +59,7 @@ let createStartGameScreen = () => {
     <button class="start-game button active">Start Game</button>`);
 };
 
-//Game win state HTML
-
+//Replaces the contents of the "game-controls" element with the "Game state win" html.
 let createWinScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
@@ -69,8 +67,7 @@ let createWinScreen = () => {
     <button class="restart button active">Play again?</button>`);
 };
 
-//Game loss state HTML
-
+//Replaces the contents of the "game-controls" element with the "Game state loss" html.
 let createLossScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
@@ -78,8 +75,10 @@ let createLossScreen = () => {
     <button class="restart button">Try again?</button>`);
 };
 
-//change rocket image src 
-
+/**
+ * @description Target the "rocket-image" element and replace the value of the src attribute. 
+ * @param {string} url Value of the new image file path.
+ */
 let changeRocketImage = (url) => {
     $(".rocket-image").attr("src", url);
 }
