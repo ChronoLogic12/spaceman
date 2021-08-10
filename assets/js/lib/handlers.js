@@ -49,7 +49,7 @@ let checkGameState = (word) => {
     };
     if (!$(".target-word")[0].innerText.match(/[_]/g)) {
         gameStateWin(word);
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628591216/Spaceman/Spaceman-GameWin_g1zsha.png");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628596264/Spaceman/Spaceman-GameWin_jpoj8r.png");
     };
 };
 
