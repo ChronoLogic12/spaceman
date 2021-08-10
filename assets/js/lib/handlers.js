@@ -44,10 +44,12 @@ let checkGameState = (word) => {
         changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_4-blast-off_tcorpn.png");
     } else if (currentCount === 0) {
         gameStateLose(word);
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628170306/Spaceman/rocket404_ybnyvn.png");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628550931/Spaceman/Spaceman-GameOver_el72sw.png");
+        return;
     };
     if (!$(".target-word")[0].innerText.match(/[_]/g)) {
         gameStateWin(word);
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628591216/Spaceman/Spaceman-GameWin_g1zsha.png");
     };
 };
 
@@ -82,7 +84,7 @@ let resetGame = () => {
     $(".letter").removeClass("inactive");
     $(".counter").text(9);
     initialiseGame();
-    checkGameState();
+    changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png");
     createKeyboard();
     bindLetterHandlers();
 };
@@ -113,7 +115,6 @@ let initialiseGame = () => {
     setTargetWord();
     createStartGameScreen();
     updateCurrentGuess(currentGuess);
-    // subtractOneFromCountdown();
 }
 
 //event listeners 
