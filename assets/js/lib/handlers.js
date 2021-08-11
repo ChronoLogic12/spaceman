@@ -6,6 +6,7 @@ const {
     createWinScreen,
     createLossScreen,
     changeRocketImage,
+    preventRightClick,
 } = require('./helpers');
 
 let {
@@ -159,6 +160,7 @@ let initPageBindings = () => {
     bindLetterHandlers();
     bindRestartHandlers();
     bindModalHandlers();
+    preventRightClick();
 };
 
 module.exports = initPageBindings;

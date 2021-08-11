@@ -83,6 +83,13 @@ let changeRocketImage = (url) => {
     $(".rocket-image").attr("src", url);
 }
 
+//Prevents right click
+let preventRightClick = () => {
+    $("body").on("contextmenu", function (e) {
+        return false;
+    });
+};
+
 module.exports = {
     updateCurrentGuess,
     subtractOneFromCountdown,
@@ -91,4 +98,5 @@ module.exports = {
     createWinScreen,
     createLossScreen,
     changeRocketImage,
+    preventRightClick,
 };
