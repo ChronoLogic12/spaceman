@@ -22,33 +22,43 @@
         <!-- Game Navigation -->
         <nav>
             <!-- Open Modal -->
-            <button id="info" class="tile active"><i class="fas fa-info-circle"></i></button>
+            <button id="info" class="tile active button"><i class="fas fa-info-circle"></i></button>
             <!-- Reset Game -->
-            <button class="tile active restart"><i class="fas fa-redo"></i></button>
+            <button class="tile active restart button"><i class="fas fa-redo"></i></button>
         </nav>
     </header>
     <!-- Modal body -->
     <div class="modal" id="modal">
         <section class="modal-content">
             <h2>Spaceman - How to play</h2>
-            <p>Some text about how the game works...</p>
+            <p>Crack the code and guess the space themed word to gain access to the rocket before it
+                leaves on its adventure without you. The word you need to guess is represented by a series of dashes,
+                each
+                representing a letter. Attempt to guess the word by selecting one letter at a time from the on
+                screen keyboard. Correct guesses will reveal the letter or letters within the word while incorrect
+                guesses will bring the countdown to lift off closer to 0, whether you are ready of not.</p>
+            <br>
+            <p>Created by - Matthew Suttie (chronologic12)</p>
+            <a class="tile active" target="_blank" href="https://github.com/ChronoLogic12/spaceman"><i
+                    class="fab fa-github"></i></a>
         </section>
     </div>
     <div class="container">
         <!-- Ship launch progress -->
         <section class="rocket box-shadow container-dark-background">
-            <!-- <span>T Minus: </span> -->
             <div class="counter">10</div>
             <img class="rocket-image"
                 src="https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png">
         </section>
-        <!-- Target word -->
-        <section class="target-word-container box-shadow container-dark-background">
-            <div class="target-word"></div>
-        </section>
-        <!-- Game controls -->
-        <section class="game-controls box-shadow container-dark-background">
-        </section>
+        <div>
+            <!-- Target word -->
+            <section class="target-word-container box-shadow container-dark-background">
+                <div class="target-word"></div>
+            </section>
+            <!-- Game controls -->
+            <section class="game-controls box-shadow container-dark-background">
+            </section>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
