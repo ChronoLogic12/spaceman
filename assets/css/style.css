@@ -214,22 +214,6 @@ nav {
     transform: translateX(10%);
 }
 
-/* error 404 */
-.error-404 {
-    height: fit-content;
-    width: 30vw;
-    margin: 30px auto;
-    padding: 20px;
-}
-
-.error-404 p {
-    color: #d3d5e2;
-}
-
-.error-404 h1 {
-    font-size: 4rem;
-}
-
 /* media queries */
 @media only screen and (min-width: 375px) {
     .tile {
@@ -400,7 +384,7 @@ nav {
         margin: 12px;
         font-size: 3rem;
         line-height: 80px;
-        border-radius: 8px;
+        border-radius: 10px;
     }
 
     header h1 {

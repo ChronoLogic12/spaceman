@@ -1,0 +1,47 @@
+/* error 404 */
+
+.container {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    justify-content: space-evenly;
+    height: 90vh;
+}
+
+.game-controls {
+    align-self: center;
+    width: fit-content !important;
+    height: fit-content !important;
+    min-width: 0;
+    min-height: 0;
+    padding: 2vh 5vw;
+
+}
+
+.game-controls p,
+h1 {
+    color: #d3d5e2;
+}
+
+.game-controls p {
+    font-size: 3vh;
+}
+
+.game-controls h1 {
+    font-size: 5vh;
+    line-height: 6vh;
+}
+
+.rocket {
+    height: 40vh;
+    width: 32vh;
+}
+
+.header {
+    clear: both;
+}
+
+.button {
+    color: #222224;
+
+}
