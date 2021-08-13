@@ -144,8 +144,7 @@ let {
     words
 } = require('./data');
 
-//select random word and set 
-
+//Selects a random word and sets the number of underscores and spaces/hyphens representing characters.
 let setTargetWord = () => {
     word = words[Math.floor(Math.random() * words.length)];
     word.split('').forEach(char => {
@@ -157,32 +156,39 @@ let setTargetWord = () => {
     });
 };
 
-//check game state
+/**
+ * Checks current game state and executes appropriate response.
+ * @param {Array} word Passes the completed target word to the gameStateLose function.
+ */
 
 let checkGameState = (word) => {
     let currentCount = parseInt($(".counter").text());
     if (currentCount === 10 || currentCount === 9) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png", "Red spaceship on a field against a starry sky waiting to take off");
     } else if (currentCount === 8 || currentCount === 7) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-lights_bgixsk.png");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-lights_bgixsk.png", "Red spaceship on a field against a starry sky with bright lights shining. Launch sequence stage 1");
     } else if (currentCount === 6 || currentCount === 5) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke1_q2y1k1.png");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke1_q2y1k1.png", "Red spaceship on a field against a starry sky with bright lights and light smoke. Launch sequence stage 2");
     } else if (currentCount === 4 || currentCount === 3) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke2_zzibv3.png");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke2_zzibv3.png", "Red spaceship on a field against a starry sky with bright lights and heavy smoke. Launch sequence stage 4");
     } else if (currentCount === 2 || currentCount === 1) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_4-blast-off_tcorpn.png");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_4-blast-off_tcorpn.png", "Red spaceship on a field against a starry sky with roaring jet engine. Launch sequence stage 4");
     } else if (currentCount === 0) {
         gameStateLose(word);
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628550931/Spaceman/Spaceman-GameOver_el72sw.png");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628550931/Spaceman/Spaceman-GameOver_el72sw.png", "Sad looking astronaut watching red spaceship fly off into the stars without him");
         return;
     };
     if (!$(".target-word")[0].innerText.match(/[_]/g)) {
-        gameStateWin(word);
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628596264/Spaceman/Spaceman-GameWin_jpoj8r.png");
+        gameStateWin();
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628596264/Spaceman/Spaceman-GameWin_jpoj8r.png", "Blastoff! Red spaceship leaving earth behind to go explore the space");
     };
 };
 
-//check word contains selected letter
+/**
+ * 
+ * @param {string} event 
+ * @returns 
+ */
 
 let checkSelectedLetter = (event) => {
     if (prevGuesses.includes(event.target.innerText)) {
@@ -213,7 +219,7 @@ let resetGame = () => {
     $(".letter").removeClass("inactive");
     $(".counter").text(9);
     initialiseGame();
-    changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png");
+    changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png", "Red spaceship on a field against a starry sky waiting to take off");
     createKeyboard();
     bindLetterHandlers();
 };
@@ -308,7 +314,7 @@ let subtractOneFromCountdown = () => {
     $(".counter").text(--currentCount);
 };
 
-//Replaces the contents of the "game-controls" element with the interactive keyboard html. 
+//The CreateX functions update the HTML of the 'game-controls' element to reflect the current game state. 
 let createKeyboard = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
@@ -346,39 +352,41 @@ let createKeyboard = () => {
         </div>`);
 };
 
-//Replaces the contents of the "game-controls" element with the "start game" html.
 let createStartGameScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
     <h2>Ready?</h2>
-    <button class="start-game button active">Start Game</button>`);
+    <button aria-label="Start" class="start-game button active">Start Game</button>`);
 };
 
-//Replaces the contents of the "game-controls" element with the "Game state win" html.
 let createWinScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
     <h2>You Win!</h2>
-    <button class="restart button active">Play again?</button>`);
+    <button aria-label="Play again" class="restart button active">Play again?</button>`);
 };
 
-//Replaces the contents of the "game-controls" element with the "Game state loss" html.
 let createLossScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
     <h2>Game Over!</h2>
-    <button class="restart button">Try again?</button>`);
+    <button aria-label="Play again" class="restart button">Try again?</button>`);
 };
 
 /**
  * @description Target the "rocket-image" element and replace the value of the src attribute. 
  * @param {string} url Value of the new image file path.
+ * @param {string} desc A short description of the image to serve as the atl text.
  */
-let changeRocketImage = (url) => {
+let changeRocketImage = (url, desc) => {
     $(".rocket-image").attr("src", url);
+    $(".rocket-image").attr("alt", desc);
 }
 
-//Prevents right click
+/*
+disables right click from opening the context menu. 
+This code was created using a guid. Please see README for full details.
+*/
 let preventRightClick = () => {
     $("body").on("contextmenu", function (e) {
         return false;

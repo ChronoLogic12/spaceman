@@ -13,7 +13,7 @@ let subtractOneFromCountdown = () => {
     $(".counter").text(--currentCount);
 };
 
-//Replaces the contents of the "game-controls" element with the interactive keyboard html. 
+//The CreateX functions update the HTML of the 'game-controls' element to reflect the current game state. 
 let createKeyboard = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
@@ -51,39 +51,41 @@ let createKeyboard = () => {
         </div>`);
 };
 
-//Replaces the contents of the "game-controls" element with the "start game" html.
 let createStartGameScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
     <h2>Ready?</h2>
-    <button class="start-game button active">Start Game</button>`);
+    <button aria-label="Start" class="start-game button active">Start Game</button>`);
 };
 
-//Replaces the contents of the "game-controls" element with the "Game state win" html.
 let createWinScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
     <h2>You Win!</h2>
-    <button class="restart button active">Play again?</button>`);
+    <button aria-label="Play again" class="restart button active">Play again?</button>`);
 };
 
-//Replaces the contents of the "game-controls" element with the "Game state loss" html.
 let createLossScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
     <h2>Game Over!</h2>
-    <button class="restart button">Try again?</button>`);
+    <button aria-label="Play again" class="restart button">Try again?</button>`);
 };
 
 /**
  * @description Target the "rocket-image" element and replace the value of the src attribute. 
  * @param {string} url Value of the new image file path.
+ * @param {string} desc A short description of the image to serve as the atl text.
  */
-let changeRocketImage = (url) => {
+let changeRocketImage = (url, desc) => {
     $(".rocket-image").attr("src", url);
+    $(".rocket-image").attr("alt", desc);
 }
 
-//Prevents right click
+/*
+disables right click from opening the context menu. 
+This code was created using a guid. Please see README for full details.
+*/
 let preventRightClick = () => {
     $("body").on("contextmenu", function (e) {
         return false;

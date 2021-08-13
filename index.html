@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Spaceman is a space themed word guessing game based on the popular pen and paper game 'Hangman'.">
     <title>Spaceman</title>
     <link rel="icon" href="assets/images/spaceman-favicon.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,9 +24,9 @@
         <!-- Game Navigation -->
         <nav>
             <!-- Open Modal -->
-            <button id="info" class="tile active button"><i class="fas fa-info-circle"></i></button>
+            <button aria-label="info" id="info" class="tile active button"><i class="fas fa-info-circle"></i></button>
             <!-- Reset Game -->
-            <button class="tile active restart button"><i class="fas fa-redo"></i></button>
+            <button aria-label="restart" class="tile active restart button"><i class="fas fa-redo"></i></button>
         </nav>
     </header>
     <!-- Modal body -->
@@ -40,7 +42,7 @@
             <br>
             <p>Created by - Matthew Suttie (chronologic12)</p>
             <a target="_blank" href="https://github.com/ChronoLogic12/spaceman">
-                <button class="tile active">
+                <button aria-label="github" class="tile active">
                     <i class="fab fa-github"></i>
                 </button>
             </a>
@@ -51,7 +53,8 @@
         <section class="rocket box-shadow container-dark-background">
             <div class="counter">10</div>
             <img class="rocket-image"
-                src="https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png">
+                src="https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png"
+                alt="Red spaceship on a field against a starry sky waiting to take off">
         </section>
         <!-- Target word -->
         <section class="target-word-container box-shadow container-dark-background">

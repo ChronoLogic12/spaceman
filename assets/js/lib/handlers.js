@@ -16,8 +16,7 @@ let {
     words
 } = require('./data');
 
-//select random word and set 
-
+//Selects a random word and sets the number of underscores and spaces/hyphens representing characters.
 let setTargetWord = () => {
     word = words[Math.floor(Math.random() * words.length)];
     word.split('').forEach(char => {
@@ -29,32 +28,39 @@ let setTargetWord = () => {
     });
 };
 
-//check game state
+/**
+ * Checks current game state and executes appropriate response.
+ * @param {Array} word Passes the completed target word to the gameStateLose function.
+ */
 
 let checkGameState = (word) => {
     let currentCount = parseInt($(".counter").text());
     if (currentCount === 10 || currentCount === 9) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png", "Red spaceship on a field against a starry sky waiting to take off");
     } else if (currentCount === 8 || currentCount === 7) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-lights_bgixsk.png");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-lights_bgixsk.png", "Red spaceship on a field against a starry sky with bright lights shining. Launch sequence stage 1");
     } else if (currentCount === 6 || currentCount === 5) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke1_q2y1k1.png");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke1_q2y1k1.png", "Red spaceship on a field against a starry sky with bright lights and light smoke. Launch sequence stage 2");
     } else if (currentCount === 4 || currentCount === 3) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke2_zzibv3.png");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke2_zzibv3.png", "Red spaceship on a field against a starry sky with bright lights and heavy smoke. Launch sequence stage 4");
     } else if (currentCount === 2 || currentCount === 1) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_4-blast-off_tcorpn.png");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_4-blast-off_tcorpn.png", "Red spaceship on a field against a starry sky with roaring jet engine. Launch sequence stage 4");
     } else if (currentCount === 0) {
         gameStateLose(word);
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628550931/Spaceman/Spaceman-GameOver_el72sw.png");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628550931/Spaceman/Spaceman-GameOver_el72sw.png", "Sad looking astronaut watching red spaceship fly off into the stars without him");
         return;
     };
     if (!$(".target-word")[0].innerText.match(/[_]/g)) {
-        gameStateWin(word);
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628596264/Spaceman/Spaceman-GameWin_jpoj8r.png");
+        gameStateWin();
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628596264/Spaceman/Spaceman-GameWin_jpoj8r.png", "Blastoff! Red spaceship leaving earth behind to go explore the space");
     };
 };
 
-//check word contains selected letter
+/**
+ * 
+ * @param {string} event 
+ * @returns 
+ */
 
 let checkSelectedLetter = (event) => {
     if (prevGuesses.includes(event.target.innerText)) {
@@ -85,7 +91,7 @@ let resetGame = () => {
     $(".letter").removeClass("inactive");
     $(".counter").text(9);
     initialiseGame();
-    changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png");
+    changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png", "Red spaceship on a field against a starry sky waiting to take off");
     createKeyboard();
     bindLetterHandlers();
 };
