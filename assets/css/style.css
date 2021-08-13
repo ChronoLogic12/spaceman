@@ -1,11 +1,11 @@
-/* general stlying rules */
+/* general styling rules */
 
 body {
     text-align: center;
     font-family: 'Roboto Mono', monospace;
     background: #121743;
     color: #222224;
-    font-size: 2rem;
+    font-size: 1rem;
     user-select: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -16,23 +16,72 @@ body {
 h1,
 h2 {
     color: #d3d5e2;
-    font-size: 3rem;
-    line-height: 3rem;
     font-weight: 300;
-    /* text-transform: uppercase; */
+    margin: 0;
+}
+
+h1 {
+    font-size: 2rem;
+    line-height: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    margin: 1rem 0;
+}
+
+.tile {
+    height: 20px;
+    width: 20px;
+    margin: 3px;
+    border-radius: 3px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    line-height: 1rem;
+    padding: 0;
 }
 
 /* Colours */
 
 .box-shadow {
     border-radius: 10px;
-    background: #12133a;
-    box-shadow: 5px 5px 10px #070817,
-        -5px -5px 10px #1d1e5d;
+    box-shadow: 3px 3px 8px #010208,
+        -5px -5px 5px #454579;
 }
 
 .container-dark-background {
-    background: #0A0D28;
+    background: linear-gradient(25deg, #0f133b, #0A0D28);
+}
+
+.active {
+    background: #d3d5e2;
+    box-shadow: 5px 5px 2px #040510,
+        -2px -2px 2px #5f67af;
+}
+
+.inactive {
+    background: #727379;
+    box-shadow: 5px 5px 2px #040510,
+        -2px -2px 2px #101540;
+}
+
+.game-controls .button {
+    padding: 5px;
+}
+
+.button,
+a {
+    margin: 5px;
+    border-radius: 3px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    text-decoration: none;
+    padding: 0;
 }
 
 /* Hover effects */
@@ -43,20 +92,23 @@ h2 {
         -5px -5px 9px #363c74;
 }
 
-/* Nav */
+/* Header and Nav */
 
-nav {
-    position: fixed;
-    top: 10px;
-    right: 20px;
-    display: block;
+header {
+    width: 100%;
 }
 
-nav>button {
-    font-size: 1.5rem;
-    line-height: 1.5rem !important;
-    text-align: center;
-    border: none;
+header h1 {
+    transform: translateY(50%);
+}
+
+nav {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    flex-direction: column;
+
 }
 
 /* Modal */
@@ -64,94 +116,69 @@ nav>button {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
-    padding-top: 100px;
+    padding-top: 50px;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
+    z-index: 100;
 }
 
 .modal-content {
     background-color: #d3d5e2;
     margin: auto;
-    padding: 20px;
+    padding: 10px;
     width: 60vw;
     border-radius: 6px;
+    font-size: 1rem;
+    overflow: hidden;
+    margin-bottom: 100px;
 }
 
-/* Game elements */
+.modal h2 {
+    color: #222224;
+    font-size: 2rem;
+    line-height: 2rem;
+}
+
+/* Game space */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    height: calc(100vh - 95px);
+    padding-top: 30px;
+}
+
 /* Keyboard */
 .game-controls {
-    width: 700px;
-    height: 225px;
-    padding: 20px;
+    width: fit-content;
+    height: fit-content;
+    min-width: 80vw;
+    padding: 3px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 20px auto;
-}
-
-.tile {
-    height: 50px;
-    width: 50px;
-    margin: 10px;
-    border-radius: 6px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 2rem;
-    transition: all 0.2s ease-in-out;
-    border: none;
+    margin: auto;
 }
 
 .letters-row {
     margin-top: 5px;
     display: flex;
-    flex-direction: row;
-}
-
-.active {
-    background: #d3d5e2;
-    box-shadow: 5px 5px 9px #040510,
-        -5px -5px 9px #101540;
-
-}
-
-.inactive {
-    background: #727379;
-    box-shadow: 5px 5px 9px #040510,
-        -5px -5px 9px #101540;
-}
-
-/* Start/Win/Loss screens */
-
-.button,
-a {
-    height: 50px;
-    width: fit-content;
-    margin: 10px;
-    border-radius: 6px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 2rem;
-    transition: all 0.2s ease-in-out;
-    border: none;
-    color: #222224;
-    text-decoration: none;
-}
-
-a {
-    padding: 4px;
+    justify-content: space-around;
 }
 
 /* Rocket */
 .rocket {
-    height: 800px;
-    width: 620px;
-    margin: 2rem;
+    height: 50vh;
+    width: 40vh;
     margin: auto;
     background-image: url("https://res.cloudinary.com/chronologic12/image/upload/v1628162423/Spaceman/stars-only_i2y1sz.gif");
+    background-size: cover;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -163,33 +190,31 @@ a {
     border-radius: 10px;
 }
 
-/* Terget word */
-
+/* Target word */
 .target-word {
     display: flex;
+    flex-flow: row wrap;
     flex-direction: row;
     justify-content: center;
-}
-
-.target-word>.tile {
-    line-height: 50px;
+    max-width: 80vw;
 }
 
 .target-word-container {
-    margin: 20px auto;
+    margin: 3% auto;
     width: fit-content;
-    padding: 20px;
+    height: fit-content;
+    padding: 5px;
 }
 
 /* Counter */
-
 .counter {
     color: #d3d5e2;
     position: absolute;
+    font-size: 2rem;
+    transform: translateX(10%);
 }
 
 /* error 404 */
-
 .error-404 {
     height: fit-content;
     width: 30vw;
@@ -203,4 +228,133 @@ a {
 
 .error-404 h1 {
     font-size: 4rem;
+}
+
+/* media queries */
+@media only screen and (min-width: 375px) {
+    .tile {
+        height: 25px;
+        width: 25px;
+        margin: 4px;
+        border-radius: 3px;
+        font-size: 1rem;
+        line-height: 25px;
+    }
+}
+
+@media only screen and (min-width: 520px) {
+    .tile {
+        height: 30px;
+        width: 30px;
+        margin: 5px;
+        border-radius: 4px;
+        font-size: 1.5rem;
+        line-height: 30px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    nav {
+        top: 15px;
+        right: 15px;
+    }
+}
+
+@media only screen and (min-width: 650px) {
+    .tile {
+        height: 35px;
+        width: 35px;
+        margin: 6px;
+        border-radius: 5px;
+        font-size: 1.5rem;
+        line-height: 30px;
+    }
+
+    .game-controls .button {
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        margin: 0.5rem;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .tile {
+        height: 45px;
+        width: 45px;
+        margin: 8px;
+        border-radius: 6px;
+        font-size: 2rem;
+        line-height: 45px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .game-controls {
+        min-width: 70vw;
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    .container {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: repeat(2, 1fr);
+        height: calc(98vh - 32px);
+        width: 100%;
+        place-items: center;
+    }
+
+    .target-word-container {
+        align-self: end;
+        max-width: 610px;
+    }
+
+    .game-controls {
+        align-self: start;
+        min-width: 610px;
+        min-height: 198px;
+        margin: 3% 0;
+        padding: 10px;
+    }
+
+    .rocket {
+        grid-row: 1/3;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    .rocket {
+        height: 70vh;
+        width: 56vh;
+    }
+
+    .counter {
+        font-size: 4rem;
+    }
+}
+
+@media only screen and (max-width: 1450px) {
+    tile {
+        height: 50px;
+        width: 50px;
+        margin: 8px;
+        border-radius: 6px;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 2rem;
+        transition: all 0.2s ease-in-out;
+        border: none;
+        line-height: 50px;
+    }
 }
