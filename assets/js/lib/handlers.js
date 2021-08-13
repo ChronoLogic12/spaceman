@@ -30,7 +30,7 @@ let setTargetWord = () => {
 
 /**
  * Checks current game state and executes appropriate response.
- * @param {Array} word Passes the completed target word to the gameStateLose function.
+ * @param {String} word Passes the completed target word to the gameStateLose function.
  */
 
 let checkGameState = (word) => {

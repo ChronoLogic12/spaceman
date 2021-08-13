@@ -7,7 +7,7 @@ let updateCurrentGuess = (guess) => {
     $(".target-word").append(`${guess.join("")}`);
 };
 
-//Subtracts one from the failed attempts counter.  
+//Subtracts one from the remaining attempts counter.  
 let subtractOneFromCountdown = () => {
     let currentCount = parseInt($(".counter").text());
     $(".counter").text(--currentCount);
@@ -69,7 +69,7 @@ let createLossScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
     <h2>Game Over!</h2>
-    <button aria-label="Play again" class="restart button">Try again?</button>`);
+    <button aria-label="Play again" class="restart button active">Try again?</button>`);
 };
 
 /**

@@ -158,7 +158,7 @@ let setTargetWord = () => {
 
 /**
  * Checks current game state and executes appropriate response.
- * @param {Array} word Passes the completed target word to the gameStateLose function.
+ * @param {String} word Passes the completed target word to the gameStateLose function.
  */
 
 let checkGameState = (word) => {
@@ -308,7 +308,7 @@ let updateCurrentGuess = (guess) => {
     $(".target-word").append(`${guess.join("")}`);
 };
 
-//Subtracts one from the failed attempts counter.  
+//Subtracts one from the remaining attempts counter.  
 let subtractOneFromCountdown = () => {
     let currentCount = parseInt($(".counter").text());
     $(".counter").text(--currentCount);
