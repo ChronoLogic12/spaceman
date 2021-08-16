@@ -3,7 +3,7 @@
  ### Code Institute Milestone Project 2 HTML/CSS/JAVASCRIPT - Interactive Front-End Development
 
 <p align="center">
-    <img src="/assets/images/readme-images/spaceman-logo.png" width="200px"/>
+    <img src="assets/images/readme-images/spaceman-logo.png" width="200px"/>
 </p>
 
  ## About the game
@@ -13,7 +13,7 @@
  [Spaceman - Live site](https://chronologic12.github.io/spaceman/)
 
 <p align="center">
-    <img src="/assets/images/readme-images/spaceman-responsive.PNG" width="1200px"/>
+    <img src="assets/images/readme-images/spaceman-responsive.PNG" width="1200px"/>
 </p>
 
 ## Table of contents
@@ -60,11 +60,11 @@
 
 The wireframes include page layouts for desktop, tablet and mobile screens with instances of the victory screen and error 404 page shown in tablet scaling.
 
- * [Desktop](../spaceman/assets/images/readme-images/spaceman-desktop.png)
- * [Tablet](../spaceman/assets/images/readme-images/spaceman-tablet.png)
- * [Tablet Victory screen](../spaceman/assets/images/readme-images/spaceman-tablet-win.png)
- * [Error 404 page](../spaceman/assets/images/readme-images/spaceman-tablet-404.png)
- * [Mobile](../spaceman/assets/images/readme-images/spaceman-mobile.png)
+ * [Desktop](assets/images/readme-images/spaceman-desktop.png)
+ * [Tablet](assets/images/readme-images/spaceman-tablet.png)
+ * [Tablet Victory screen](assets/images/readme-images/spaceman-tablet-win.png)
+ * [Error 404 page](assets/images/readme-images/spaceman-tablet-404.png)
+ * [Mobile](assets/images/readme-images/spaceman-mobile.png)
 
   ### Layout and Responsive design
 
@@ -89,17 +89,17 @@ The wireframes include page layouts for desktop, tablet and mobile screens with 
     * The nav section contains fixed position controls that are accessible at all times regardless of the game state. It contains a restart button which will reset the game a select a new target word if they should choose and a information button which will bring up a modal with game play instructions and a link ot the GitHub repository.
 
     <p align="center">
-    <img src="/assets/images/readme-images/nav.PNG" width="70px"/>
+    <img src="assets/images/readme-images/nav.PNG" width="70px"/>
     </p>
     <p align="center">
-    <img src="/assets/images/readme-images/modal.PNG" width="600px"/>
+    <img src="assets/images/readme-images/modal.PNG" width="600px"/>
     </p>
 
   * Rocket Launch Progress
     * The Rocket section contains both the image depicting the current launch progress of the rock and the launch countdown which function as a 'Remaining guesses' counter for the player. The counter begins at 10 and immediately changes to 9 when the player selects to start the game to indicate the countdown has started. 
 
     <p align="center">
-    <img src="/assets/images/readme-images/rocket.PNG" width="500px"/>
+    <img src="assets/images/readme-images/rocket.PNG" width="500px"/>
     </p>
 
     The potential rocket images are as follows (left to right, top to bottom) -
@@ -114,30 +114,30 @@ The wireframes include page layouts for desktop, tablet and mobile screens with 
     8. Error 404 
 
     <p align="center">
-    <img src="/assets/images/readme-images/spaceman_launch-stages.png" width="800px"/>
+    <img src="assets/images/readme-images/spaceman_launch-stages.png" width="800px"/>
     </p>
 
   * Target Word
     * The target word section shows the player the number of characters in the word they need to guess as well as any spaces or other non letter characters contained in the word. It will also auto complete the word for the player in the case that they have not completed the word within the given number of guesses. 
 
     <p align="center">
-    <img src="/assets/images/readme-images/target-word.PNG" width="500px"/>
+    <img src="assets/images/readme-images/target-word.PNG" width="500px"/>
     </p>
 
   * Game Controls
     * The game controls section is where the player will select to start the game, select the letters they wish to guess and choose to play again on either the win or loss game states.
 
     <p align="center">
-    <img src="/assets/images/readme-images/start-game.PNG" width="500px"/>
+    <img src="assets/images/readme-images/start-game.PNG" width="500px"/>
     </p>
     <p align="center">
-    <img src="/assets/images/readme-images/you-win.PNG" width="500px"/>
+    <img src="assets/images/readme-images/you-win.PNG" width="500px"/>
     </p>
     <p align="center">
-    <img src="/assets/images/readme-images/game-over.PNG" width="500px"/>
+    <img src="assets/images/readme-images/game-over.PNG" width="500px"/>
     </p>
     <p align="center">
-    <img src="/assets/images/readme-images/keyboard.PNG" width="500px"/>
+    <img src="assets/images/readme-images/keyboard.PNG" width="500px"/>
     </p>
 
 
@@ -156,24 +156,24 @@ The wireframes include page layouts for desktop, tablet and mobile screens with 
 
   Desktop
   <p>
-    <img src="../spaceman/assets/images/readme-images/lighthouse-desktop.PNG" width="400px"/>
+    <img src="assets/images/readme-images/lighthouse-desktop.PNG" width="400px"/>
   </p>
   Mobile
   <p>
-    <img src="../spaceman/assets/images/readme-images/lighthouse-mobile.PNG" width="400px"/>
+    <img src="assets/images/readme-images/lighthouse-mobile.PNG" width="400px"/>
   </p>
 
   ### Code Validation
   All CSS was tested using [W3C Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) and returned no errors.
 
   <p align="center">
-    <img src="../spaceman/assets/images/readme-images/css-test.PNG" width="900px"/>
+    <img src="assets/images/readme-images/css-test.PNG" width="900px"/>
   </p>
 
   All HTML was tested using [Nu HTML Checker](https://validator.w3.org/nu/) and returned no errors.
 
   <p align="center">
-    <img src="../spaceman/assets/images/readme-images/html-test.PNG" width="600px"/>
+    <img src="assets/images/readme-images/html-test.PNG" width="600px"/>
   </p>
 
    ## Deployment GitHub Pages
