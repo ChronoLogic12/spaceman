@@ -44,8 +44,14 @@ h2 {
     padding: 0;
 }
 
-/* Colours */
+.hidden {
+    position: absolute;
+    top: -5000px;
+    left: -5000px;
+}
 
+/* Colours */
+/* Box shadow soft UI tiles were created with help from https://neumorphism.io/#dedfe8 */
 .box-shadow {
     border-radius: 10px;
     box-shadow: 3px 3px 8px #010208,
@@ -82,6 +88,8 @@ a {
     border: none;
     text-decoration: none;
     padding: 0;
+    color: inherit;
+    display: block;
 }
 
 /* Hover effects */
@@ -135,6 +143,9 @@ nav {
     font-size: 1rem;
     overflow: hidden;
     margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .modal h2 {
@@ -143,7 +154,7 @@ nav {
     line-height: 2rem;
 }
 
-/* Game space */
+/* ---------------Game space-------------- */
 .container {
     display: flex;
     flex-direction: column;
@@ -214,7 +225,8 @@ nav {
     transform: translateX(10%);
 }
 
-/* media queries */
+/* ----------media queries--------- */
+/* Resizing for mobile devices */
 @media only screen and (min-width: 375px) {
     .tile {
         height: 25px;
@@ -250,6 +262,7 @@ nav {
     }
 }
 
+/* Resizing for tablet devices */
 @media only screen and (min-width: 650px) {
     .tile {
         height: 35px;
@@ -284,6 +297,7 @@ nav {
     }
 }
 
+/* Resizing for desktop (HD) devices */
 @media only screen and (min-width: 1080px) {
     .container {
         display: grid;
@@ -328,6 +342,7 @@ nav {
     }
 }
 
+/* Resizing for desktop (QHD) devices */
 @media only screen and (min-width: 1440px) {
     .tile {
         height: 50px;
@@ -342,6 +357,7 @@ nav {
     }
 }
 
+/* Resizing for desktop (UHD) devices */
 @media only screen and (min-width: 2560px) {
     .tile {
         height: 65px;
