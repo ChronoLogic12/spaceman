@@ -6,30 +6,30 @@ const {
     createWinScreen,
     createLossScreen,
     changeRocketImage,
-    preventRightClick,
-} = require('./helpers');
+    preventRightClick
+} = require("./helpers");
 
 let {
     word,
     currentGuess,
     prevGuesses,
     words
-} = require('./data');
+} = require("./data");
 
 //Selects a random word and sets the number of underscores and spaces/hyphens representing characters.
 let setTargetWord = () => {
     word = words[Math.floor(Math.random() * words.length)];
-    word.split('').forEach(char => {
+    word.split("").forEach(char => {
         if (char.match(/[a-z]/g)) {
             currentGuess.push("<div class='tile inactive'>_</div>");
         } else {
             currentGuess.push(`<div class='tile active'>${char}</div>`);
-        };
+        }
     });
 };
 
 /**
- * Checks current game state and executes appropriate response.
+ * @description Checks current game state and executes appropriate response.
  * @param {String} word Passes the completed target word to the gameStateLose function.
  */
 
@@ -49,34 +49,34 @@ let checkGameState = (word) => {
         gameStateLose(word);
         changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628550931/Spaceman/Spaceman-GameOver_el72sw.png", "Sad looking astronaut watching red spaceship fly off into the stars without him");
         return;
-    };
+    }
     if (!$(".target-word")[0].innerText.match(/[_]/g)) {
         gameStateWin();
         changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628596264/Spaceman/Spaceman-GameWin_jpoj8r.png", "Blastoff! Red spaceship leaving earth behind to go explore the space");
-    };
+    }
 };
 
 /**
+ * @description 
+ * @param {object} event The tile clicked my the player containing the selected letter to check
  * 
- * @param {string} event 
- * @returns 
  */
 
 let checkSelectedLetter = (event) => {
     if (prevGuesses.includes(event.target.innerText)) {
         return;
-    };
+    }
     prevGuesses.push(event.target.innerText);
     event.target.classList.toggle("active");
     event.target.classList.toggle("inactive");
     for (let i = 0; i < word.length; i++) {
         if (word[i].toUpperCase() === event.target.innerText) {
             currentGuess[i] = `<div class='tile active'>${word[i].toUpperCase()}</div>`;
-        };
-    };
+        }
+    }
     if (!word.toUpperCase().includes(event.target.innerText)) {
         subtractOneFromCountdown();
-    };
+    }
     updateCurrentGuess(currentGuess);
     checkGameState(word);
 };
@@ -91,7 +91,10 @@ let resetGame = () => {
     $(".letter").removeClass("inactive");
     $(".counter").text(9);
     initialiseGame();
-    changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png", "Red spaceship on a field against a starry sky waiting to take off");
+    changeRocketImage(
+        "https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png",
+        "Red spaceship on a field against a starry sky waiting to take off"
+    );
     createKeyboard();
     bindLetterHandlers();
 };
@@ -108,7 +111,9 @@ let gameStateWin = () => {
 let gameStateLose = (word) => {
     let completeWordHtml = [];
     word.split("").forEach(char => {
-        completeWordHtml.push(`<div class='tile active'>${char.toUpperCase()}</div>`);
+        completeWordHtml.push(
+            `<div class='tile active'>${char.toUpperCase()}</div>`
+        );
     });
     $(".target-word").empty();
     $(".target-word").append(`${completeWordHtml.join("")}`);
@@ -122,14 +127,14 @@ let initialiseGame = () => {
     setTargetWord();
     createStartGameScreen();
     updateCurrentGuess(currentGuess);
-}
+};
 
-//event listeners 
+//event listeners
 
 let bindLetterHandlers = () => {
     //keyboard letters
     $(".letter").click(function (event) {
-        checkSelectedLetter(event)
+        checkSelectedLetter(event);
     });
 };
 
@@ -155,7 +160,7 @@ let bindModalHandlers = () => {
     });
 
     //close modal
-    $($("#modal")).click(function (event) {
+    $($("#modal")).click(function () {
         $("#modal").toggle();
     });
 };

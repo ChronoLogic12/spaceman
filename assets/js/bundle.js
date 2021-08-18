@@ -116,14 +116,14 @@ const words = [
     "twinkling",
     "vacuum",
     "wormhole",
-    "zenith",
+    "zenith"
 ];
 
 module.exports = {
-    words,
-    word,
     currentGuess,
-    prevGuesses
+    prevGuesses,
+    word,
+    words
 };
 },{}],3:[function(require,module,exports){
 const {
@@ -134,20 +134,20 @@ const {
     createWinScreen,
     createLossScreen,
     changeRocketImage,
-    preventRightClick,
-} = require('./helpers');
+    preventRightClick
+} = require("./helpers");
 
 let {
     word,
     currentGuess,
     prevGuesses,
     words
-} = require('./data');
+} = require("./data");
 
 //Selects a random word and sets the number of underscores and spaces/hyphens representing characters.
 let setTargetWord = () => {
     word = words[Math.floor(Math.random() * words.length)];
-    word.split('').forEach(char => {
+    word.split("").forEach(char => {
         if (char.match(/[a-z]/g)) {
             currentGuess.push("<div class='tile inactive'>_</div>");
         } else {
@@ -185,9 +185,9 @@ let checkGameState = (word) => {
 };
 
 /**
- * 
- * @param {string} event 
- * @returns 
+ *
+ * @param {string} event
+ * @returns
  */
 
 let checkSelectedLetter = (event) => {
@@ -219,7 +219,10 @@ let resetGame = () => {
     $(".letter").removeClass("inactive");
     $(".counter").text(9);
     initialiseGame();
-    changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png", "Red spaceship on a field against a starry sky waiting to take off");
+    changeRocketImage(
+        "https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png",
+        "Red spaceship on a field against a starry sky waiting to take off"
+    );
     createKeyboard();
     bindLetterHandlers();
 };
@@ -236,7 +239,9 @@ let gameStateWin = () => {
 let gameStateLose = (word) => {
     let completeWordHtml = [];
     word.split("").forEach(char => {
-        completeWordHtml.push(`<div class='tile active'>${char.toUpperCase()}</div>`);
+        completeWordHtml.push(
+            `<div class='tile active'>${char.toUpperCase()}</div>`
+        );
     });
     $(".target-word").empty();
     $(".target-word").append(`${completeWordHtml.join("")}`);
@@ -252,7 +257,7 @@ let initialiseGame = () => {
     updateCurrentGuess(currentGuess);
 }
 
-//event listeners 
+//event listeners
 
 let bindLetterHandlers = () => {
     //keyboard letters
@@ -370,7 +375,7 @@ let createLossScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
     <h2>Game Over!</h2>
-    <button aria-label="Play again" class="restart button">Try again?</button>`);
+    <button aria-label="Play again" class="restart button active">Try again?</button>`);
 };
 
 /**

@@ -80,14 +80,14 @@ let createLossScreen = () => {
 let changeRocketImage = (url, desc) => {
     $(".rocket-image").attr("src", url);
     $(".rocket-image").attr("alt", desc);
-}
+};
 
 /*
 disables right click from opening the context menu. 
 This code was created using a guid. Please see README for full details.
 */
 let preventRightClick = () => {
-    $("body").on("contextmenu", function (e) {
+    $("body").on("contextmenu", function () {
         return false;
     });
 };

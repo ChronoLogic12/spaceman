@@ -109,12 +109,12 @@ const words = [
     "twinkling",
     "vacuum",
     "wormhole",
-    "zenith",
+    "zenith"
 ];
 
 module.exports = {
-    words,
-    word,
     currentGuess,
-    prevGuesses
+    prevGuesses,
+    word,
+    words
 };
