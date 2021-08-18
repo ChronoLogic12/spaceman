@@ -77,7 +77,7 @@ The wireframes include page layouts for desktop, tablet and mobile screens with 
     * The launch countdown which acts as a counter for the players remaining guesses.
     * Animated stars background. 
   * Target word: This section represents the word which the player needs to guess. 
-  * Letter selection keyboard: This section is how the player interacts with the game and alters depending upon game state. 
+  * Game controls: This section is how the player interacts with the game and alters depending upon game state. 
 
   For screens below 1080p the game elements are stacked atop one another in a column design ideal for tablet and mobile devices. For devices above 1080p and mobile devices in landscape orientation the target word and keyboard elements are to the right of the rocket image to make better use of the horizontal space.
 
@@ -173,6 +173,8 @@ The wireframes include page layouts for desktop, tablet and mobile screens with 
   <p align="center">
     <img src="assets/images/readme-images/html-test.PNG" width="600px"/>
   </p>
+
+  Javascript linting was handled by [ESLint](https://eslint.org/).
 
 ## Deployment GitHub Pages
  
