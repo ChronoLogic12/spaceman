@@ -16,7 +16,7 @@ let {
     words
 } = require("./data");
 
-//Selects a random word and sets the number of underscores and spaces/hyphens representing characters.
+//select a random word and set the number of underscores and spaces/hyphens representing characters.
 let setTargetWord = () => {
     word = words[Math.floor(Math.random() * words.length)];
     word.split("").forEach(char => {
@@ -29,10 +29,9 @@ let setTargetWord = () => {
 };
 
 /**
- * @description Checks current game state and executes appropriate response.
+ * @description Check and update current game state.
  * @param {String} word Passes the completed target word to the gameStateLose function.
  */
-
 let checkGameState = (word) => {
     let currentCount = parseInt($(".counter").text());
     if (currentCount === 10 || currentCount === 9) {
@@ -52,36 +51,33 @@ let checkGameState = (word) => {
     }
     if (!$(".target-word")[0].innerText.match(/[_]/g)) {
         gameStateWin();
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628596264/Spaceman/Spaceman-GameWin_jpoj8r.png", "Blastoff! Red spaceship leaving earth behind to go explore the space");
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628596264/Spaceman/Spaceman-GameWin_jpoj8r.png", "Blastoff! Red spaceship leaving earth behind to go explore space");
     }
 };
 
-/**
- * @description 
- * @param {object} event The tile clicked my the player containing the selected letter to check
- * 
- */
-
 let checkSelectedLetter = (event) => {
+    //exit function if letter has already been guessed
     if (prevGuesses.includes(event.target.innerText)) {
         return;
     }
+    //add guessed letter to prevGuesses array and toggle button styling
     prevGuesses.push(event.target.innerText);
     event.target.classList.toggle("active");
     event.target.classList.toggle("inactive");
+    /*check guessed letter against each character in the target word.
+      update currentGuess array if letters match*/
     for (let i = 0; i < word.length; i++) {
         if (word[i].toUpperCase() === event.target.innerText) {
             currentGuess[i] = `<div class='tile active'>${word[i].toUpperCase()}</div>`;
         }
     }
+    //subtract 1 from counter if guessed letter does not match any character in target word
     if (!word.toUpperCase().includes(event.target.innerText)) {
         subtractOneFromCountdown();
     }
     updateCurrentGuess(currentGuess);
     checkGameState(word);
 };
-
-//reset game
 
 let resetGame = () => {
     word = "";
@@ -99,16 +95,17 @@ let resetGame = () => {
     bindLetterHandlers();
 };
 
-//game state WIN
-
 let gameStateWin = () => {
     createWinScreen();
     bindRestartHandlers();
 };
 
-//game state LOSE
-
+/**
+ * @description complete the target word and initialise loss game screen
+ * @param {string} word Target word
+ */
 let gameStateLose = (word) => {
+    //create new array containing all letters and update target-word game element
     let completeWordHtml = [];
     word.split("").forEach(char => {
         completeWordHtml.push(
@@ -121,24 +118,21 @@ let gameStateLose = (word) => {
     bindRestartHandlers();
 };
 
-//initialise game
-
 let initialiseGame = () => {
     setTargetWord();
     createStartGameScreen();
     updateCurrentGuess(currentGuess);
 };
 
-//event listeners
+//-------event listeners--------
 
 let bindLetterHandlers = () => {
-    //keyboard letters
     $(".letter").click(function (event) {
         checkSelectedLetter(event);
     });
 };
 
-let bindGameStartHandler = () => {
+let bindGameStartHandlers = () => {
     $(".start-game").click(function () {
         createKeyboard();
         bindLetterHandlers();
@@ -147,19 +141,16 @@ let bindGameStartHandler = () => {
 };
 
 let bindRestartHandlers = () => {
-    //reset button
     $(".restart").click(function () {
         resetGame();
     });
 };
 
 let bindModalHandlers = () => {
-    //open modal button
     $("#info").click(function () {
         $("#modal").toggle();
     });
 
-    //close modal
     $($("#modal")).click(function () {
         $("#modal").toggle();
     });
@@ -167,7 +158,7 @@ let bindModalHandlers = () => {
 
 let initPageBindings = () => {
     initialiseGame();
-    bindGameStartHandler();
+    bindGameStartHandlers();
     bindLetterHandlers();
     bindRestartHandlers();
     bindModalHandlers();
