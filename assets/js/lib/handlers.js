@@ -10,11 +10,14 @@ const {
 } = require("./helpers");
 
 let {
+    words
+} = require("./data");
+
+let {
     word,
     currentGuess,
     prevGuesses,
-    words
-} = require("./data");
+} = require("./constants");
 
 //select a random word and set the number of underscores and spaces/hyphens representing characters.
 let setTargetWord = () => {
