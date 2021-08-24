@@ -98,6 +98,7 @@ a {
     background: #fff;
     box-shadow: 5px 5px 9px #151a50,
         -5px -5px 9px #363c74;
+    cursor: pointer;
 }
 
 /* Header and Nav */
@@ -209,6 +210,17 @@ nav {
     justify-content: center;
     max-width: 80vw;
 }
+
+.target-word .tile {
+    cursor: default !important;
+}
+
+.target-word .tile:hover {
+    background: #d3d5e2;
+    box-shadow: 5px 5px 2px #040510,
+        -2px -2px 2px #5f67af;
+}
+
 
 .target-word-container {
     margin: 3% auto;
