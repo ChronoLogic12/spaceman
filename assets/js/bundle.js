@@ -4,13 +4,72 @@ const initPageBindings = require('./lib/handlers')
 // bind event listeners once dom content is loaded
 
 $(document).ready(initPageBindings);
-},{"./lib/handlers":3}],2:[function(require,module,exports){
-//global variables
-
+},{"./lib/handlers":4}],2:[function(require,module,exports){
 let word = "";
 let currentGuess = [];
 let prevGuesses = [];
+const keyboardKeys = [
+    ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", ],
+    ["A", "S", "D", "F", "G", "H", "J", "K", "L", ],
+    ["Z", "X", "C", "V", "B", "N", "M", ]
+];
 
+const IMAGE_CDN_BASE_URL = "https://res.cloudinary.com/chronologic12/image/upload";
+const imagePropsByCountdownNumber = {
+    10: {
+        src: `${IMAGE_CDN_BASE_URL}/v1628162339/Spaceman/rocket1.png`,
+        desc: "Red spaceship on a field against a starry sky waiting to take off"
+    },
+    9: {
+        src: `${IMAGE_CDN_BASE_URL}/v1628162339/Spaceman/rocket1.png`,
+        desc: "Red spaceship on a field against a starry sky waiting to take off"
+    },
+    8: {
+        src: `${IMAGE_CDN_BASE_URL}/v1628514664/Spaceman/Spaceman---Rocket-_2-lights_bgixsk.png`,
+        desc: "Red spaceship on a field against a starry sky with bright lights shining. Launch sequence stage 1"
+    },
+    7: {
+        src: `${IMAGE_CDN_BASE_URL}/v1628514664/Spaceman/Spaceman---Rocket-_2-lights_bgixsk.png`,
+        desc: "Red spaceship on a field against a starry sky with bright lights shining. Launch sequence stage 1"
+    },
+    6: {
+        src: `${IMAGE_CDN_BASE_URL}/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke1_q2y1k1.png`,
+        desc: "Red spaceship on a field against a starry sky with bright lights and light smoke. Launch sequence stage 2"
+    },
+    5: {
+        src: `${IMAGE_CDN_BASE_URL}/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke1_q2y1k1.png`,
+        desc: "Red spaceship on a field against a starry sky with bright lights and light smoke. Launch sequence stage 2"
+    },
+    4: {
+        src: `${IMAGE_CDN_BASE_URL}/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke2_zzibv3.png`,
+        desc: "Red spaceship on a field against a starry sky with bright lights and heavy smoke. Launch sequence stage 3"
+    },
+    3: {
+        src: `${IMAGE_CDN_BASE_URL}/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke2_zzibv3.png`,
+        desc: "Red spaceship on a field against a starry sky with bright lights and heavy smoke. Launch sequence stage 3"
+    },
+    2: {
+        src: `${IMAGE_CDN_BASE_URL}/v1628514664/Spaceman/Spaceman---Rocket-_4-blast-off_tcorpn.png`,
+        desc: "Red spaceship on a field against a starry sky with roaring jet engine. Launch sequence stage 4"
+    },
+    1: {
+        src: `${IMAGE_CDN_BASE_URL}/v1628514664/Spaceman/Spaceman---Rocket-_4-blast-off_tcorpn.png`,
+        desc: "Red spaceship on a field against a starry sky with roaring jet engine. Launch sequence stage 4"
+    },
+    0: {
+        src: `${IMAGE_CDN_BASE_URL}/v1628550931/Spaceman/Spaceman-GameOver_el72sw.png`,
+        desc: "Sad looking astronaut watching red spaceship fly off into the stars without him"
+    }
+}
+
+module.exports = {
+    currentGuess,
+    prevGuesses,
+    word,
+    keyboardKeys,
+    imagePropsByCountdownNumber
+};
+},{}],3:[function(require,module,exports){
 const words = [
     "space",
     "nebular",
@@ -120,12 +179,9 @@ const words = [
 ];
 
 module.exports = {
-    currentGuess,
-    prevGuesses,
-    word,
     words
 };
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 const {
     updateCurrentGuess,
     subtractOneFromCountdown,
@@ -138,13 +194,17 @@ const {
 } = require("./helpers");
 
 let {
-    word,
-    currentGuess,
-    prevGuesses,
     words
 } = require("./data");
 
-//Selects a random word and sets the number of underscores and spaces/hyphens representing characters.
+let {
+    word,
+    currentGuess,
+    prevGuesses,
+    imagePropsByCountdownNumber
+} = require("./constants");
+
+//select a random word and set the number of underscores and spaces/hyphens representing characters.
 let setTargetWord = () => {
     word = words[Math.floor(Math.random() * words.length)];
     word.split("").forEach(char => {
@@ -152,64 +212,57 @@ let setTargetWord = () => {
             currentGuess.push("<div class='tile inactive'>_</div>");
         } else {
             currentGuess.push(`<div class='tile active'>${char}</div>`);
-        };
+        }
     });
 };
 
 /**
- * Checks current game state and executes appropriate response.
+ * @description Check and update current game state.
  * @param {String} word Passes the completed target word to the gameStateLose function.
  */
-
 let checkGameState = (word) => {
     let currentCount = parseInt($(".counter").text());
-    if (currentCount === 10 || currentCount === 9) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png", "Red spaceship on a field against a starry sky waiting to take off");
-    } else if (currentCount === 8 || currentCount === 7) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-lights_bgixsk.png", "Red spaceship on a field against a starry sky with bright lights shining. Launch sequence stage 1");
-    } else if (currentCount === 6 || currentCount === 5) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke1_q2y1k1.png", "Red spaceship on a field against a starry sky with bright lights and light smoke. Launch sequence stage 2");
-    } else if (currentCount === 4 || currentCount === 3) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_2-smoke2_zzibv3.png", "Red spaceship on a field against a starry sky with bright lights and heavy smoke. Launch sequence stage 4");
-    } else if (currentCount === 2 || currentCount === 1) {
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628514664/Spaceman/Spaceman---Rocket-_4-blast-off_tcorpn.png", "Red spaceship on a field against a starry sky with roaring jet engine. Launch sequence stage 4");
-    } else if (currentCount === 0) {
+
+    const {
+        src,
+        desc
+    } = imagePropsByCountdownNumber[currentCount];
+
+    changeRocketImage(src, desc);
+    if (currentCount === 0) {
         gameStateLose(word);
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628550931/Spaceman/Spaceman-GameOver_el72sw.png", "Sad looking astronaut watching red spaceship fly off into the stars without him");
         return;
-    };
+    }
+
     if (!$(".target-word")[0].innerText.match(/[_]/g)) {
         gameStateWin();
-        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628596264/Spaceman/Spaceman-GameWin_jpoj8r.png", "Blastoff! Red spaceship leaving earth behind to go explore the space");
-    };
+        changeRocketImage("https://res.cloudinary.com/chronologic12/image/upload/v1628596264/Spaceman/Spaceman-GameWin_jpoj8r.png", "Blastoff! Red spaceship leaving earth behind to go explore space");
+    }
 };
 
-/**
- *
- * @param {string} event
- * @returns
- */
-
 let checkSelectedLetter = (event) => {
+    //exit function if letter has already been guessed
     if (prevGuesses.includes(event.target.innerText)) {
         return;
-    };
+    }
+    //add guessed letter to prevGuesses array and toggle button styling
     prevGuesses.push(event.target.innerText);
     event.target.classList.toggle("active");
     event.target.classList.toggle("inactive");
+    /*check guessed letter against each character in the target word.
+      update currentGuess array if letters match*/
     for (let i = 0; i < word.length; i++) {
         if (word[i].toUpperCase() === event.target.innerText) {
             currentGuess[i] = `<div class='tile active'>${word[i].toUpperCase()}</div>`;
-        };
-    };
+        }
+    }
+    //subtract 1 from counter if guessed letter does not match any character in target word
     if (!word.toUpperCase().includes(event.target.innerText)) {
         subtractOneFromCountdown();
-    };
+    }
     updateCurrentGuess(currentGuess);
     checkGameState(word);
 };
-
-//reset game
 
 let resetGame = () => {
     word = "";
@@ -227,16 +280,17 @@ let resetGame = () => {
     bindLetterHandlers();
 };
 
-//game state WIN
-
 let gameStateWin = () => {
     createWinScreen();
     bindRestartHandlers();
 };
 
-//game state LOSE
-
+/**
+ * @description complete the target word and initialise loss game screen
+ * @param {string} word Target word
+ */
 let gameStateLose = (word) => {
+    //create new array containing all letters and update target-word game element
     let completeWordHtml = [];
     word.split("").forEach(char => {
         completeWordHtml.push(
@@ -249,24 +303,21 @@ let gameStateLose = (word) => {
     bindRestartHandlers();
 };
 
-//initialise game
-
 let initialiseGame = () => {
     setTargetWord();
     createStartGameScreen();
     updateCurrentGuess(currentGuess);
-}
+};
 
-//event listeners
+//-------event listeners--------
 
 let bindLetterHandlers = () => {
-    //keyboard letters
     $(".letter").click(function (event) {
-        checkSelectedLetter(event)
+        checkSelectedLetter(event);
     });
 };
 
-let bindGameStartHandler = () => {
+let bindGameStartHandlers = () => {
     $(".start-game").click(function () {
         createKeyboard();
         bindLetterHandlers();
@@ -275,27 +326,24 @@ let bindGameStartHandler = () => {
 };
 
 let bindRestartHandlers = () => {
-    //reset button
     $(".restart").click(function () {
         resetGame();
     });
 };
 
 let bindModalHandlers = () => {
-    //open modal button
     $("#info").click(function () {
         $("#modal").toggle();
     });
 
-    //close modal
-    $($("#modal")).click(function (event) {
+    $($("#modal")).click(function () {
         $("#modal").toggle();
     });
 };
 
 let initPageBindings = () => {
     initialiseGame();
-    bindGameStartHandler();
+    bindGameStartHandlers();
     bindLetterHandlers();
     bindRestartHandlers();
     bindModalHandlers();
@@ -303,7 +351,11 @@ let initPageBindings = () => {
 };
 
 module.exports = initPageBindings;
-},{"./data":2,"./helpers":4}],4:[function(require,module,exports){
+},{"./constants":2,"./data":3,"./helpers":5}],5:[function(require,module,exports){
+let {
+    keyboardKeys
+} = require("./constants");
+
 /**
  * @description replaces the contents of the "target-word" element.
  * @param {Array} guess The players current guess.
@@ -322,39 +374,16 @@ let subtractOneFromCountdown = () => {
 //The CreateX functions update the HTML of the 'game-controls' element to reflect the current game state. 
 let createKeyboard = () => {
     $(".game-controls").empty();
-    $(".game-controls").append(`
-        <div class="letters-row">
-            <button class="letter tile active">Q</button>
-            <button class="letter tile active">W</button>
-            <button class="letter tile active">E</button>
-            <button class="letter tile active">R</button>
-            <button class="letter tile active">T</button>
-            <button class="letter tile active">Y</button>
-            <button class="letter tile active">U</button>
-            <button class="letter tile active">I</button>
-            <button class="letter tile active">O</button>
-            <button class="letter tile active">P</button>
-        </div>
-        <div class="letters-row">
-            <button class="letter tile active">A</button>
-            <button class="letter tile active">S</button>
-            <button class="letter tile active">D</button>
-            <button class="letter tile active">F</button>
-            <button class="letter tile active">G</button>
-            <button class="letter tile active">H</button>
-            <button class="letter tile active">J</button>
-            <button class="letter tile active">K</button>
-            <button class="letter tile active">L</button>
-        </div>
-        <div class="letters-row">
-            <button class="letter tile active">Z</button>
-            <button class="letter tile active">X</button>
-            <button class="letter tile active">C</button>
-            <button class="letter tile active">V</button>
-            <button class="letter tile active">B</button>
-            <button class="letter tile active">N</button>
-            <button class="letter tile active">M</button>
-        </div>`);
+    let keyboardHTML = '';
+    keyboardKeys.forEach(row => {
+        let rowHTML = `<div class="letters-row">`;
+        row.forEach(char => {
+            rowHTML += `<button class="letter tile active">${char}</button>`;
+        });
+        rowHTML += `</div>`;
+        keyboardHTML += rowHTML;
+    });
+    $(".game-controls").append(keyboardHTML);
 };
 
 let createStartGameScreen = () => {
@@ -386,14 +415,14 @@ let createLossScreen = () => {
 let changeRocketImage = (url, desc) => {
     $(".rocket-image").attr("src", url);
     $(".rocket-image").attr("alt", desc);
-}
+};
 
 /*
 disables right click from opening the context menu. 
 This code was created using a guid. Please see README for full details.
 */
 let preventRightClick = () => {
-    $("body").on("contextmenu", function (e) {
+    $("body").on("contextmenu", function () {
         return false;
     });
 };
@@ -408,4 +437,4 @@ module.exports = {
     changeRocketImage,
     preventRightClick,
 };
-},{}]},{},[1]);
+},{"./constants":2}]},{},[1]);
