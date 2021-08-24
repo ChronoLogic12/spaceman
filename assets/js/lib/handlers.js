@@ -56,24 +56,34 @@ let checkGameState = (word) => {
     }
 };
 
-let checkSelectedLetter = (event) => {
+let onKeyDown = (event) => {
+    if (event.which >= 65 && event.which <= 90) {
+        checkSelectedLetter(String.fromCharCode(event.which));
+    }
+}
+
+let onLetterSelect = (event) => {
+    checkSelectedLetter(event.target.innerText)
+}
+
+let checkSelectedLetter = (charStr) => {
     //exit function if letter has already been guessed
-    if (prevGuesses.includes(event.target.innerText)) {
+    if (prevGuesses.includes(charStr)) {
         return;
     }
     //add guessed letter to prevGuesses array and toggle button styling
-    prevGuesses.push(event.target.innerText);
-    event.target.classList.toggle("active");
-    event.target.classList.toggle("inactive");
+    prevGuesses.push(charStr);
+    $(`.tile:contains(${charStr})`)[0].classList.toggle("active");
+    $(`.tile:contains(${charStr})`)[0].classList.toggle("inactive");
     /*check guessed letter against each character in the target word.
       update currentGuess array if letters match*/
     for (let i = 0; i < word.length; i++) {
-        if (word[i].toUpperCase() === event.target.innerText) {
+        if (word[i].toUpperCase() === charStr) {
             currentGuess[i] = `<div class='tile active'>${word[i].toUpperCase()}</div>`;
         }
     }
     //subtract 1 from counter if guessed letter does not match any character in target word
-    if (!word.toUpperCase().includes(event.target.innerText)) {
+    if (!word.toUpperCase().includes(charStr)) {
         subtractOneFromCountdown();
     }
     updateCurrentGuess(currentGuess);
@@ -129,8 +139,11 @@ let initialiseGame = () => {
 
 let bindLetterHandlers = () => {
     $(".letter").click(function (event) {
-        checkSelectedLetter(event);
+        onLetterSelect(event);
     });
+    $(document).keydown(function (event) {
+        onKeyDown(event);
+    })
 };
 
 let bindGameStartHandlers = () => {
