@@ -173,7 +173,6 @@ let bindModalHandlers = () => {
 let initPageBindings = () => {
     initialiseGame();
     bindGameStartHandlers();
-    bindLetterHandlers();
     bindRestartHandlers();
     bindModalHandlers();
     preventRightClick();
