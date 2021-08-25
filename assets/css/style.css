@@ -40,7 +40,7 @@ h2 {
     font-size: 1rem;
     transition: all 0.2s ease-in-out;
     border: none;
-    line-height: 1rem;
+    line-height: 20px;
     padding: 0;
 }
 
@@ -307,6 +307,10 @@ nav {
     .game-controls {
         min-width: 70vw;
     }
+
+    .target-word-container {
+        max-width: 90%;
+    }
 }
 
 /* Resizing for desktop (HD) devices */
@@ -321,7 +325,6 @@ nav {
 
     .target-word-container {
         align-self: end;
-        max-width: 520px;
     }
 
     .game-controls {
@@ -389,10 +392,6 @@ nav {
         min-height: 255px;
     }
 
-    .target-word-container {
-        max-width: 800px;
-    }
-
     .game-controls .button {
         font-size: 2.5rem;
         line-height: 2.5rem;
@@ -423,10 +422,6 @@ nav {
     .game-controls {
         min-width: 1040px;
         min-height: 327px;
-    }
-
-    .target-word-container {
-        max-width: 1040px;
     }
 
     .game-controls .button {
