@@ -109,6 +109,7 @@ let resetGame = () => {
 let gameStateWin = () => {
     createWinScreen();
     bindRestartHandlers();
+    bindReplayHandlers();
 };
 
 /**
@@ -127,6 +128,7 @@ let gameStateLose = (word) => {
     $(".target-word").append(`${completeWordHtml.join("")}`);
     createLossScreen();
     bindRestartHandlers();
+    bindReplayHandlers();
 };
 
 let initialiseGame = () => {
@@ -157,6 +159,14 @@ let bindGameStartHandlers = () => {
 let bindRestartHandlers = () => {
     $(".restart").click(function () {
         resetGame();
+    });
+};
+
+let bindReplayHandlers = () => {
+    $(document).one("keydown", function (event) {
+        if (event.which === 32 || event.which === 13) {
+            resetGame();
+        }
     });
 };
 
