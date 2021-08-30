@@ -22,7 +22,7 @@
     <header>
         <h1>Spaceman</h1>
         <!-- Game Navigation -->
-        <nav>
+        <nav class="hidden">
             <!-- Open Modal -->
             <button aria-label="info" id="info" class="tile active button"><i class="fas fa-info-circle"></i></button>
             <!-- Reset Game -->
@@ -40,6 +40,36 @@
                 screen keyboard. Correct guesses will reveal the letter or letters within the word while incorrect
                 guesses will bring the countdown to lift off closer to 0, whether you are ready or not.</p>
             <br>
+            <figure>
+                <img src="./assets/images/rocket.PNG"
+                    alt="Red rocket waiting to start countdown to liftoff waiting on a starry background">
+                <figcaption>Keep track of the rockets launch progress here. For each incorrect guess the countdown will
+                    go down by one as the rocket builds to liftoff.</figcaption>
+            </figure>
+            <figure>
+                <img src="./assets/images/target-word.PNG"
+                    alt="A series of tiles depicting underscores representing letters yet to be guessed">
+                <figcaption>Watch your correct guesses fill in the code word and use the new
+                    information to attempt to decipher the rest. Each underscore ("_") represents a letter that needs to
+                    be
+                    guessed while completed letters will appear in the correct position in the word.</figcaption>
+            </figure>
+            <figure>
+                <img src="./assets/images/keyboard.PNG" alt="White letter tiles arranged in a qwerty layout">
+                <figcaption>Select letters to guess by picking them on either the on screen keyboard or
+                    by typing them on your own keyboard. Once you've made a guess that letter will turn grey to help you
+                    keep track of your previous attempts. Once the game's over you can choose to play again by selecting
+                    the "Play/Try again?" button or by pressing either space or enter on your keyboard.</figcaption>
+            </figure>
+            <figure>
+                <img src="./assets/images/nav.PNG"
+                    alt="Two white tiles showing and information icon and a restart icon">
+                <figcaption>If you'd like to read the instructions again you can select the "information" tile in the
+                    top right corner or select the restart button if you fancy a new word.</figcaption>
+            </figure>
+            <br>
+            <label for="showInstructionsOnStart">Show Instruction on Game start?</label>
+            <input type="checkbox" id="showInstructionsOnStart" name="showInstructionsOnStart" checked>
             <p>Created by - Matthew Suttie (chronologic12)</p>
             <a target="_blank" href="https://github.com/ChronoLogic12/spaceman" aria-label="github"
                 class="tile active button">
@@ -47,22 +77,22 @@
             </a>
         </section>
     </div>
-    <div class="container" role="presentation">
+    <div class="container start-game-container start-screen" role="presentation">
         <!-- Ship launch progress -->
         <section class="rocket box-shadow container-dark-background">
             <h2 class="hidden">Rocket Launch progress</h2>
-            <div class="counter">10</div>
+            <div class="countdown hidden">10</div>
             <img class="rocket-image"
                 src="https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png"
                 alt="Red spaceship on a field against a starry sky waiting to take off">
         </section>
         <!-- Target word -->
-        <section class="target-word-container box-shadow container-dark-background">
+        <section class="target-word-container box-shadow container-dark-background hidden">
             <h2 class="hidden">Target Word</h2>
             <div class="target-word"></div>
         </section>
         <!-- Game controls -->
-        <section class="game-controls box-shadow container-dark-background">
+        <section class="game-controls start box-shadow container-dark-background">
             <h2 class="hidden">Game Controls</h2>
         </section>
     </div>
