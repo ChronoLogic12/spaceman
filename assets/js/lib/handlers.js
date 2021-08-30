@@ -104,6 +104,7 @@ let resetGame = () => {
     );
     createKeyboard();
     bindLetterHandlers();
+    updateModalCheckbox();
 };
 
 let gameStateWin = () => {
@@ -139,7 +140,16 @@ let toggleStartGameStyling = () => {
     $(".container").removeClass("start-game-container");
 }
 
+const updateModalCheckbox = () => {
+    if (localStorage.getItem("showInstructionsOnStart") == "true") {
+        $("#showInstructionsOnStart").checked = true;
+    } else {
+        $("#showInstructionsOnStart").checked = false;
+    }
+}
+
 let initialiseGame = () => {
+    updateModalCheckbox();
     setTargetWord();
     createStartGameScreen();
     updateCurrentGuess(currentGuess);
@@ -162,7 +172,7 @@ let bindGameStartHandlers = () => {
         bindLetterHandlers();
         subtractOneFromCountdown();
         toggleStartGameStyling();
-        if (localStorage.getItem("showInstructionsOnStart")) {
+        if (localStorage.getItem("showInstructionsOnStart") === "true") {
             $("#modal").toggle();
         }
     });
@@ -186,11 +196,25 @@ let bindModalHandlers = () => {
     $("#info").click(function () {
         $("#modal").toggle();
     });
-
-    $("#modal").click(function () {
-        $("#modal").toggle();
-    })
+    $("#modal").click(function (event) {
+        if (event.target.id === "modal") {
+            $("#modal").toggle();
+        } else {
+            return;
+        }
+    });
+    bindModalOnStartToggle();
 };
+
+const bindModalOnStartToggle = () => {
+    $("#showInstructionsOnStart").change(function () {
+        if (localStorage.getItem("showInstructionsOnStart") == "true") {
+            localStorage.setItem("showInstructionsOnStart", "false");
+        } else {
+            localStorage.setItem("showInstructionsOnStart", "true");
+        }
+    })
+}
 
 let initPageBindings = () => {
     initialiseGame();
