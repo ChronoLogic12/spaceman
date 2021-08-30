@@ -221,7 +221,7 @@ let setTargetWord = () => {
  * @param {String} word Passes the completed target word to the gameStateLose function.
  */
 let checkGameState = (word) => {
-    let currentCount = parseInt($(".counter").text());
+    let currentCount = parseInt($(".countdown").text());
 
     const {
         src,
@@ -266,7 +266,7 @@ let checkSelectedLetter = (charStr) => {
             currentGuess[i] = `<div class='tile active'>${word[i].toUpperCase()}</div>`;
         }
     }
-    //subtract 1 from counter if guessed letter does not match any character in target word
+    //subtract 1 from countdown if guessed letter does not match any character in target word
     if (!word.toUpperCase().includes(charStr)) {
         subtractOneFromCountdown();
     }
@@ -280,7 +280,7 @@ let resetGame = () => {
     prevGuesses = [];
     $(".letter").addClass("active");
     $(".letter").removeClass("inactive");
-    $(".counter").text(9);
+    $(".countdown").text(9);
     initialiseGame();
     changeRocketImage(
         "https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png",
@@ -315,6 +315,14 @@ let gameStateLose = (word) => {
     bindReplayHandlers();
 };
 
+let toggleStartGameStyling = () => {
+    $("nav").removeClass("hidden");
+    $(".target-word-container").removeClass("hidden");
+    $(".countdown").removeClass("hidden");
+    $(".game-controls").removeClass("start");
+    $(".container").removeClass("start-game-container");
+}
+
 let initialiseGame = () => {
     setTargetWord();
     createStartGameScreen();
@@ -337,6 +345,10 @@ let bindGameStartHandlers = () => {
         createKeyboard();
         bindLetterHandlers();
         subtractOneFromCountdown();
+        toggleStartGameStyling();
+        if (localStorage.getItem("showInstructionsOnStart")) {
+            $("#modal").toggle();
+        }
     });
 };
 
@@ -359,9 +371,9 @@ let bindModalHandlers = () => {
         $("#modal").toggle();
     });
 
-    $($("#modal")).click(function () {
+    $("#modal").click(function () {
         $("#modal").toggle();
-    });
+    })
 };
 
 let initPageBindings = () => {
@@ -387,10 +399,10 @@ let updateCurrentGuess = (guess) => {
     $(".target-word").append(`${guess.join("")}`);
 };
 
-//Subtracts one from the remaining attempts counter.  
+//Subtracts one from the remaining attempts countdown.  
 let subtractOneFromCountdown = () => {
-    let currentCount = parseInt($(".counter").text());
-    $(".counter").text(--currentCount);
+    let currentCount = parseInt($(".countdown").text());
+    $(".countdown").text(--currentCount);
 };
 
 //The CreateX functions update the HTML of the 'game-controls' element to reflect the current game state. 

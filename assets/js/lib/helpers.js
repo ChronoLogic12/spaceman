@@ -11,10 +11,10 @@ let updateCurrentGuess = (guess) => {
     $(".target-word").append(`${guess.join("")}`);
 };
 
-//Subtracts one from the remaining attempts counter.  
+//Subtracts one from the remaining attempts countdown.  
 let subtractOneFromCountdown = () => {
-    let currentCount = parseInt($(".counter").text());
-    $(".counter").text(--currentCount);
+    let currentCount = parseInt($(".countdown").text());
+    $(".countdown").text(--currentCount);
 };
 
 //The CreateX functions update the HTML of the 'game-controls' element to reflect the current game state. 
