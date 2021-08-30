@@ -142,9 +142,9 @@ let toggleStartGameStyling = () => {
 
 const updateModalCheckbox = () => {
     if (localStorage.getItem("showInstructionsOnStart") == "true") {
-        $("#showInstructionsOnStart").checked = true;
+        $("#showInstructionsOnStart").prop('checked', true);
     } else {
-        $("#showInstructionsOnStart").checked = false;
+        $("#showInstructionsOnStart").prop('checked', false);
     }
 }
 
