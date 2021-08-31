@@ -380,6 +380,9 @@ let bindModalHandlers = () => {
     $("#info").click(function () {
         $("#modal").toggle();
     });
+    $(".close").click(function () {
+        $("#modal").toggle();
+    })
     $("#modal").click(function (event) {
         if (event.target.id === "modal") {
             $("#modal").toggle();
