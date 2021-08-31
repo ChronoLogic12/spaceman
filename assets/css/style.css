@@ -48,6 +48,10 @@ h2 {
     display: none;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 /* Colours */
 /* Box shadow soft UI tiles were created with help from https://neumorphism.io/#dedfe8 */
 .box-shadow {
@@ -140,8 +144,8 @@ nav {
     width: 60vw;
     border-radius: 6px;
     font-size: 1rem;
-    overflow: hidden;
-    margin-bottom: 100px;
+    max-height: 80vh;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -152,6 +156,8 @@ nav {
     color: #222224;
     font-size: 2rem;
     line-height: 2rem;
+    margin: 0 30px 0 10px;
+    word-break: break-all;
 }
 
 .modal img {
@@ -165,6 +171,20 @@ form {
 
 form label {
     color: #d3d5e2;
+}
+
+.modal header {
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+.modal p {
+    margin-top: 1.5rem;
 }
 
 /* ---------------Game space-------------- */
@@ -235,7 +255,7 @@ form label {
 }
 
 .target-word-container {
-    margin: 3% auto;
+    margin: 20px auto;
     width: fit-content;
     height: fit-content;
     padding: 5px;
@@ -259,6 +279,11 @@ form label {
         border-radius: 3px;
         font-size: 1rem;
         line-height: 25px;
+    }
+
+    .modal h2 {
+        word-break: normal;
+        margin: 0 30px;
     }
 }
 
@@ -347,7 +372,7 @@ form label {
         align-self: start;
         min-width: 520px;
         min-height: 180px;
-        margin: 3% 0;
+        margin: 20px 0;
         padding: 5px;
     }
 
@@ -360,7 +385,8 @@ form label {
     }
 
     h1 {
-        font-size: 3rem;
+        font-size: 5rem;
+        padding-top: 1rem;
     }
 
     h2 {
@@ -374,6 +400,11 @@ form label {
 
     .countdown {
         font-size: 4rem;
+    }
+
+    .close {
+        top: -10px;
+        right: -10px;
     }
 }
 
@@ -390,6 +421,13 @@ form label {
     .game-controls {
         padding: 10px;
     }
+
+    .modal .tile {
+        height: 50px;
+        width: 50px;
+        font-size: 2rem;
+        line-height: 50px;
+    }
 }
 
 /* Resizing for desktop (UHD) devices */
@@ -403,7 +441,7 @@ form label {
     }
 
     header h1 {
-        font-size: 5rem;
+        font-size: 7rem;
         transform: translateY(100%);
     }
 
@@ -435,7 +473,7 @@ form label {
     }
 
     header h1 {
-        font-size: 7rem;
+        font-size: 9rem;
         transform: translateY(150%);
     }
 
