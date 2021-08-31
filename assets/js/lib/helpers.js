@@ -12,7 +12,7 @@ let updateCurrentGuess = (guess) => {
 };
 
 //Subtracts one from the remaining attempts countdown.  
-let subtractOneFromCountdown = () => {
+let decrementCountdown = () => {
     let currentCount = parseInt($(".countdown").text());
     $(".countdown").text(--currentCount);
 };
@@ -75,7 +75,7 @@ let preventRightClick = () => {
 
 module.exports = {
     updateCurrentGuess,
-    subtractOneFromCountdown,
+    decrementCountdown,
     createKeyboard,
     createStartGameScreen,
     createWinScreen,

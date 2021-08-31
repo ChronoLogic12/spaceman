@@ -1,6 +1,6 @@
 const {
     updateCurrentGuess,
-    subtractOneFromCountdown,
+    decrementCountdown,
     createKeyboard,
     createStartGameScreen,
     createWinScreen,
@@ -84,7 +84,7 @@ let checkSelectedLetter = (charStr) => {
     }
     //subtract 1 from countdown if guessed letter does not match any character in target word
     if (!word.toUpperCase().includes(charStr)) {
-        subtractOneFromCountdown();
+        decrementCountdown();
     }
     updateCurrentGuess(currentGuess);
     checkGameState(word);
@@ -170,7 +170,7 @@ let bindGameStartHandlers = () => {
     $(".start-game").click(function () {
         createKeyboard();
         bindLetterHandlers();
-        subtractOneFromCountdown();
+        decrementCountdown();
         toggleStartGameStyling();
         if (localStorage.getItem("showInstructionsOnStart") === "true") {
             $("#modal").toggle();

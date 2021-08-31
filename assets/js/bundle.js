@@ -184,7 +184,7 @@ module.exports = {
 },{}],4:[function(require,module,exports){
 const {
     updateCurrentGuess,
-    subtractOneFromCountdown,
+    decrementCountdown,
     createKeyboard,
     createStartGameScreen,
     createWinScreen,
@@ -268,7 +268,7 @@ let checkSelectedLetter = (charStr) => {
     }
     //subtract 1 from countdown if guessed letter does not match any character in target word
     if (!word.toUpperCase().includes(charStr)) {
-        subtractOneFromCountdown();
+        decrementCountdown();
     }
     updateCurrentGuess(currentGuess);
     checkGameState(word);
@@ -354,7 +354,7 @@ let bindGameStartHandlers = () => {
     $(".start-game").click(function () {
         createKeyboard();
         bindLetterHandlers();
-        subtractOneFromCountdown();
+        decrementCountdown();
         toggleStartGameStyling();
         if (localStorage.getItem("showInstructionsOnStart") === "true") {
             $("#modal").toggle();
@@ -427,7 +427,7 @@ let updateCurrentGuess = (guess) => {
 };
 
 //Subtracts one from the remaining attempts countdown.  
-let subtractOneFromCountdown = () => {
+let decrementCountdown = () => {
     let currentCount = parseInt($(".countdown").text());
     $(".countdown").text(--currentCount);
 };
@@ -490,7 +490,7 @@ let preventRightClick = () => {
 
 module.exports = {
     updateCurrentGuess,
-    subtractOneFromCountdown,
+    decrementCountdown,
     createKeyboard,
     createStartGameScreen,
     createWinScreen,
