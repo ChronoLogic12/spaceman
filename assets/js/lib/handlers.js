@@ -6,7 +6,9 @@ const {
     createWinScreen,
     createLossScreen,
     changeRocketImage,
-    preventRightClick
+    preventRightClick,
+    updateModalCheckbox,
+    removeStartGameStyling,
 } = require("./helpers");
 
 let {
@@ -21,7 +23,7 @@ let {
 } = require("./constants");
 
 //select a random word and set the number of underscores and spaces/hyphens representing characters.
-let setTargetWord = () => {
+const setTargetWord = () => {
     word = words[Math.floor(Math.random() * words.length)];
     word.split("").forEach(char => {
         if (char.match(/[a-z]/g)) {
@@ -36,7 +38,7 @@ let setTargetWord = () => {
  * @description Check and update current game state.
  * @param {String} word Passes the completed target word to the gameStateLose function.
  */
-let checkGameState = (word) => {
+const checkGameState = (word) => {
     let currentCount = parseInt($(".countdown").text());
 
     const {
@@ -56,17 +58,17 @@ let checkGameState = (word) => {
     }
 };
 
-let onKeyDown = (event) => {
+const onKeyDown = (event) => {
     if (event.which >= 65 && event.which <= 90) {
         checkSelectedLetter(String.fromCharCode(event.which));
     }
 }
 
-let onLetterSelect = (event) => {
+const onLetterSelect = (event) => {
     checkSelectedLetter(event.target.innerText)
 }
 
-let checkSelectedLetter = (charStr) => {
+const checkSelectedLetter = (charStr) => {
     //exit function if letter has already been guessed
     if (prevGuesses.includes(charStr)) {
         return;
@@ -90,14 +92,15 @@ let checkSelectedLetter = (charStr) => {
     checkGameState(word);
 };
 
-let resetGame = () => {
+const resetGame = () => {
     word = "";
     currentGuess = [];
     prevGuesses = [];
     $(".letter").addClass("active");
     $(".letter").removeClass("inactive");
     $(".countdown").text(9);
-    initialiseGame();
+    setTargetWord();
+    updateCurrentGuess(currentGuess);
     changeRocketImage(
         "https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png",
         "Red spaceship on a field against a starry sky waiting to take off"
@@ -107,7 +110,7 @@ let resetGame = () => {
     updateModalCheckbox();
 };
 
-let gameStateWin = () => {
+const gameStateWin = () => {
     createWinScreen();
     bindRestartHandlers();
     bindReplayHandlers();
@@ -117,7 +120,7 @@ let gameStateWin = () => {
  * @description complete the target word and initialise loss game screen
  * @param {string} word Target word
  */
-let gameStateLose = (word) => {
+const gameStateLose = (word) => {
     //create new array containing all letters and update target-word game element
     let completeWordHtml = [];
     word.split("").forEach(char => {
@@ -132,23 +135,7 @@ let gameStateLose = (word) => {
     bindReplayHandlers();
 };
 
-let toggleStartGameStyling = () => {
-    $("nav").removeClass("hidden");
-    $(".target-word-container").removeClass("hidden");
-    $(".countdown").removeClass("hidden");
-    $(".game-controls").removeClass("start");
-    $(".container").removeClass("start-game-container");
-}
-
-const updateModalCheckbox = () => {
-    if (localStorage.getItem("showInstructionsOnStart") == "true") {
-        $("#showInstructionsOnStart").prop('checked', true);
-    } else {
-        $("#showInstructionsOnStart").prop('checked', false);
-    }
-}
-
-let initialiseGame = () => {
+const initialiseGame = () => {
     updateModalCheckbox();
     setTargetWord();
     createStartGameScreen();
@@ -157,7 +144,7 @@ let initialiseGame = () => {
 
 //-------event listeners--------
 
-let bindLetterHandlers = () => {
+const bindLetterHandlers = () => {
     $(".letter").click(function (event) {
         onLetterSelect(event);
     });
@@ -166,25 +153,25 @@ let bindLetterHandlers = () => {
     })
 };
 
-let bindGameStartHandlers = () => {
+const bindGameStartHandlers = () => {
     $(".start-game").click(function () {
         createKeyboard();
         bindLetterHandlers();
         decrementCountdown();
-        toggleStartGameStyling();
+        removeStartGameStyling();
         if (localStorage.getItem("showInstructionsOnStart") === "true") {
             $("#modal").toggle();
         }
     });
 };
 
-let bindRestartHandlers = () => {
+const bindRestartHandlers = () => {
     $(".restart").click(function () {
         resetGame();
     });
 };
 
-let bindReplayHandlers = () => {
+const bindReplayHandlers = () => {
     $(document).one("keydown", function (event) {
         if (event.which === 32 || event.which === 13) {
             resetGame();
@@ -192,7 +179,7 @@ let bindReplayHandlers = () => {
     });
 };
 
-let bindModalHandlers = () => {
+const bindModalHandlers = () => {
     $("#info").click(function () {
         $("#modal").toggle();
     });
@@ -219,7 +206,7 @@ const bindModalOnStartToggle = () => {
     })
 }
 
-let initPageBindings = () => {
+const initPageBindings = () => {
     initialiseGame();
     bindGameStartHandlers();
     bindRestartHandlers();

@@ -190,7 +190,9 @@ const {
     createWinScreen,
     createLossScreen,
     changeRocketImage,
-    preventRightClick
+    preventRightClick,
+    updateModalCheckbox,
+    removeStartGameStyling,
 } = require("./helpers");
 
 let {
@@ -205,7 +207,7 @@ let {
 } = require("./constants");
 
 //select a random word and set the number of underscores and spaces/hyphens representing characters.
-let setTargetWord = () => {
+const setTargetWord = () => {
     word = words[Math.floor(Math.random() * words.length)];
     word.split("").forEach(char => {
         if (char.match(/[a-z]/g)) {
@@ -220,7 +222,7 @@ let setTargetWord = () => {
  * @description Check and update current game state.
  * @param {String} word Passes the completed target word to the gameStateLose function.
  */
-let checkGameState = (word) => {
+const checkGameState = (word) => {
     let currentCount = parseInt($(".countdown").text());
 
     const {
@@ -240,17 +242,17 @@ let checkGameState = (word) => {
     }
 };
 
-let onKeyDown = (event) => {
+const onKeyDown = (event) => {
     if (event.which >= 65 && event.which <= 90) {
         checkSelectedLetter(String.fromCharCode(event.which));
     }
 }
 
-let onLetterSelect = (event) => {
+const onLetterSelect = (event) => {
     checkSelectedLetter(event.target.innerText)
 }
 
-let checkSelectedLetter = (charStr) => {
+const checkSelectedLetter = (charStr) => {
     //exit function if letter has already been guessed
     if (prevGuesses.includes(charStr)) {
         return;
@@ -274,14 +276,15 @@ let checkSelectedLetter = (charStr) => {
     checkGameState(word);
 };
 
-let resetGame = () => {
+const resetGame = () => {
     word = "";
     currentGuess = [];
     prevGuesses = [];
     $(".letter").addClass("active");
     $(".letter").removeClass("inactive");
     $(".countdown").text(9);
-    initialiseGame();
+    setTargetWord();
+    updateCurrentGuess(currentGuess);
     changeRocketImage(
         "https://res.cloudinary.com/chronologic12/image/upload/v1628162339/Spaceman/rocket1.png",
         "Red spaceship on a field against a starry sky waiting to take off"
@@ -291,7 +294,7 @@ let resetGame = () => {
     updateModalCheckbox();
 };
 
-let gameStateWin = () => {
+const gameStateWin = () => {
     createWinScreen();
     bindRestartHandlers();
     bindReplayHandlers();
@@ -301,7 +304,7 @@ let gameStateWin = () => {
  * @description complete the target word and initialise loss game screen
  * @param {string} word Target word
  */
-let gameStateLose = (word) => {
+const gameStateLose = (word) => {
     //create new array containing all letters and update target-word game element
     let completeWordHtml = [];
     word.split("").forEach(char => {
@@ -316,23 +319,7 @@ let gameStateLose = (word) => {
     bindReplayHandlers();
 };
 
-let toggleStartGameStyling = () => {
-    $("nav").removeClass("hidden");
-    $(".target-word-container").removeClass("hidden");
-    $(".countdown").removeClass("hidden");
-    $(".game-controls").removeClass("start");
-    $(".container").removeClass("start-game-container");
-}
-
-const updateModalCheckbox = () => {
-    if (localStorage.getItem("showInstructionsOnStart") == "true") {
-        $("#showInstructionsOnStart").prop('checked', true);
-    } else {
-        $("#showInstructionsOnStart").prop('checked', false);
-    }
-}
-
-let initialiseGame = () => {
+const initialiseGame = () => {
     updateModalCheckbox();
     setTargetWord();
     createStartGameScreen();
@@ -341,7 +328,7 @@ let initialiseGame = () => {
 
 //-------event listeners--------
 
-let bindLetterHandlers = () => {
+const bindLetterHandlers = () => {
     $(".letter").click(function (event) {
         onLetterSelect(event);
     });
@@ -350,25 +337,25 @@ let bindLetterHandlers = () => {
     })
 };
 
-let bindGameStartHandlers = () => {
+const bindGameStartHandlers = () => {
     $(".start-game").click(function () {
         createKeyboard();
         bindLetterHandlers();
         decrementCountdown();
-        toggleStartGameStyling();
+        removeStartGameStyling();
         if (localStorage.getItem("showInstructionsOnStart") === "true") {
             $("#modal").toggle();
         }
     });
 };
 
-let bindRestartHandlers = () => {
+const bindRestartHandlers = () => {
     $(".restart").click(function () {
         resetGame();
     });
 };
 
-let bindReplayHandlers = () => {
+const bindReplayHandlers = () => {
     $(document).one("keydown", function (event) {
         if (event.which === 32 || event.which === 13) {
             resetGame();
@@ -376,7 +363,7 @@ let bindReplayHandlers = () => {
     });
 };
 
-let bindModalHandlers = () => {
+const bindModalHandlers = () => {
     $("#info").click(function () {
         $("#modal").toggle();
     });
@@ -403,7 +390,7 @@ const bindModalOnStartToggle = () => {
     })
 }
 
-let initPageBindings = () => {
+const initPageBindings = () => {
     initialiseGame();
     bindGameStartHandlers();
     bindRestartHandlers();
@@ -421,19 +408,19 @@ let {
  * @description replaces the contents of the "target-word" element.
  * @param {Array} guess The players current guess.
  */
-let updateCurrentGuess = (guess) => {
+const updateCurrentGuess = (guess) => {
     $(".target-word").empty();
     $(".target-word").append(`${guess.join("")}`);
 };
 
 //Subtracts one from the remaining attempts countdown.  
-let decrementCountdown = () => {
+const decrementCountdown = () => {
     let currentCount = parseInt($(".countdown").text());
     $(".countdown").text(--currentCount);
 };
 
 //The CreateX functions update the HTML of the 'game-controls' element to reflect the current game state. 
-let createKeyboard = () => {
+const createKeyboard = () => {
     $(".game-controls").empty();
     let keyboardHTML = '';
     keyboardKeys.forEach(row => {
@@ -447,33 +434,41 @@ let createKeyboard = () => {
     $(".game-controls").append(keyboardHTML);
 };
 
-let createStartGameScreen = () => {
+const createStartGameScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
     <h2>Ready?</h2>
     <button aria-label="Start" class="start-game button active">Start Game</button>`);
 };
 
-let createWinScreen = () => {
+const createWinScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
     <h2>You Win!</h2>
     <button aria-label="Play again" class="restart button active">Play again?</button>`);
 };
 
-let createLossScreen = () => {
+const createLossScreen = () => {
     $(".game-controls").empty();
     $(".game-controls").append(`
     <h2>Game Over!</h2>
     <button aria-label="Play again" class="restart button active">Try again?</button>`);
 };
 
+const removeStartGameStyling = () => {
+    $("nav").removeClass("hidden");
+    $(".target-word-container").removeClass("hidden");
+    $(".countdown").removeClass("hidden");
+    $(".game-controls").removeClass("start");
+    $(".container").removeClass("start-game-container");
+}
+
 /**
  * @description Target the "rocket-image" element and replace the value of the src attribute. 
  * @param {string} url Value of the new image file path.
  * @param {string} desc A short description of the image to serve as the atl text.
  */
-let changeRocketImage = (url, desc) => {
+const changeRocketImage = (url, desc) => {
     $(".rocket-image").attr("src", url);
     $(".rocket-image").attr("alt", desc);
 };
@@ -482,11 +477,19 @@ let changeRocketImage = (url, desc) => {
 disables right click from opening the context menu. 
 This code was created using a guid. Please see README for full details.
 */
-let preventRightClick = () => {
+const preventRightClick = () => {
     $("body").on("contextmenu", function () {
         return false;
     });
 };
+
+const updateModalCheckbox = () => {
+    if (localStorage.getItem("showInstructionsOnStart") == "true") {
+        $("#showInstructionsOnStart").prop('checked', true);
+    } else {
+        $("#showInstructionsOnStart").prop('checked', false);
+    }
+}
 
 module.exports = {
     updateCurrentGuess,
@@ -495,7 +498,9 @@ module.exports = {
     createStartGameScreen,
     createWinScreen,
     createLossScreen,
+    removeStartGameStyling,
     changeRocketImage,
     preventRightClick,
+    updateModalCheckbox,
 };
 },{"./constants":2}]},{},[1]);
