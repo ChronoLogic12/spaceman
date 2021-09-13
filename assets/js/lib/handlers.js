@@ -58,6 +58,7 @@ const checkGameState = (word) => {
     }
 };
 
+//handlers for letter selection from user keyboard on screen keyboard. Checks for valid input and passes value as a string to checkSelectedLetter function.
 const onKeyDown = (event) => {
     if (event.which >= 65 && event.which <= 90) {
         checkSelectedLetter(String.fromCharCode(event.which));
