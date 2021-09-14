@@ -8,7 +8,7 @@
 
 ## About the game
 
- Spaceman is a space themed variant of the popular pen and paper game "Hangman". Crack the code and guess the space themed word to gain access to the rocket before it leaves on its adventure without you. The word you need to guess is represented by a series of dashes, each representing a letter. Attempt to guess the word by selecting one letter at a time from the on screen keyboard. Correct guesses will reveal the letter or letters within the word while incorrect guesses will bring the countdown to lift off closer to 0, whether you are ready or not.
+ Spaceman is a space themed variant of the popular pen and paper game "Hangman". Crack the code and guess the space themed word to gain access to the rocket before it leaves on its adventure without you. The word you need to guess is represented by a series of dashes, each representing a letter. Attempt to guess the word by selecting one letter at a time from your keyboard or by clicking the keyboard on screen. Correct guesses will reveal the letter or letters within the word while incorrect guesses will bring the countdown to lift off closer to 0, whether you are ready or not.
 
  [Spaceman - Live site](https://chronologic12.github.io/spaceman/)
 
@@ -25,15 +25,21 @@
     * [Layout and Responsive Design](#layout-and-responsive-design)
     * [Colours and Fonts](#colours-and-fonts)
  * [Features](#features)
+    * [Start Screen](#start-screen)
     * [Navigation](#navigation)
     * [Rocket Launch Progress](#rocket-launch-progress)
     * [Target Word](#target-word)
     * [Game Controls](#game-controls)
  * [Testing](#testing)
     * [User Testing](#user-testing)
+    * [Performance](#performance)
     * [Code Validation](#code-validation)
+    * [Cross Browser](#cross-browser)
+    * [Responsive Design](#responsive-design)
  * [Deployment](#deployment-github-pages)
  * [Credits](#credits)
+
+ #### Developer note - For javascript code please see the library folder at /assets/js/lib/
 
 ## UX design 
 
@@ -79,7 +85,7 @@ The wireframes include page layouts for desktop, tablet and mobile screens with 
   * Target word: This section represents the word which the player needs to guess. 
   * Game controls: This section is how the player interacts with the game and alters depending upon game state. 
 
-  For screens below 1080p the game elements are stacked atop one another in a column design ideal for tablet and mobile devices. For devices above 1080p and mobile devices in landscape orientation the target word and keyboard elements are to the right of the rocket image to make better use of the horizontal space.
+  For vertically oriented screens the game elements are stacked atop one another in a column design ideal for tablet and mobile devices. For devices in landscape orientation the target word and keyboard elements are to the right of the rocket image to make better use of the horizontal space.
 
   ### Colours and Fonts
 
@@ -87,38 +93,54 @@ The wireframes include page layouts for desktop, tablet and mobile screens with 
   The font used throughout is 'Roboto Mono'. This font is clear and easy to read and has a style that I feel fits well with the space aesthetic. 
 
 ## Features
+
+  ### Start Screen
+   * On load the page will display a simple start screen showing the rocket in its starting position on a starry background as well as a prompt for the player to select 'Start Game' when they are ready to proceed. 
+
+  <p align="center">
+  <img src="assets/images/readme-images/start-game-screen.PNG" width="500px"/>
+  </p>
   
   ### Navigation
   * The nav section contains fixed position controls that are accessible at all times regardless of the game state. It contains a restart button which will reset the game and select a new target word and an information button which will bring up a modal with game play instructions and a link to the GitHub repository.
 
-    <p align="center">
-    <img src="assets/images/readme-images/nav.PNG" width="70px"/>
-    </p>
-    <p align="center">
-    <img src="assets/images/readme-images/modal.PNG" width="600px"/>
-    </p>
+  <p align="center">
+  <img src="assets/images/readme-images/nav.PNG" width="70px"/>
+  </p>
+
+   * The information modal contains a short description of the game and each of its components to help players understand their aims and how to interact with each section. It also contains screenshot of the main gameplay sections for further clarification.
+
+  <p align="center">
+  <img src="assets/images/readme-images/modal.PNG" width="600px"/>
+  </p>
+
+  * By default the instructions modal will open when the game is started but can be toggled not to appear on refresh with a checkbox at the bottom of the section. 
+
+  <p align="center">
+  <img src="assets/images/readme-images/modal-on-start-toggle.PNG" width="500px"/>
+  </p>
 
   ### Rocket Launch Progress
   * The Rocket section contains both the image depicting the current launch progress of the rock and the launch countdown which function as a 'Remaining guesses' counter for the player. The counter begins at 10 and immediately changes to 9 when the player selects to start the game to indicate the countdown has started. 
 
-    <p align="center">
-    <img src="assets/images/readme-images/rocket.PNG" width="500px"/>
-    </p>
+<p align="center">
+<img src="assets/images/readme-images/rocket.PNG" width="500px"/>
+</p>
 
-    The potential rocket images are as follows (left to right, top to bottom) -
+  The potential rocket images are as follows (left to right, top to bottom) -
 
-    1. Idle 
-    2. Lights
-    3. Smoke - light
-    4. Smoke - heavy
-    5. Boosters
-    6. Game Loss
-    7. Game Win
-    8. Error 404 
+  1. Idle
+  2. Lights
+  3. Smoke - light
+  4. Smoke - heavy
+  5. Boosters
+  6. Game Loss
+  7. Game Win
+  8. Error 404
 
-    <p align="center">
-    <img src="assets/images/readme-images/spaceman_launch-stages.png" width="800px"/>
-    </p>
+  <p align="center">
+  <img src="assets/images/readme-images/spaceman_launch-stages.png" width="800px"/>
+  </p>
 
   ### Target Word
   * The target word section shows the player the number of characters in the word they need to guess as well as any spaces or other non letter characters contained in the word. It will also auto complete the word for the player in the case that they have not completed the word within the given number of guesses. The target word is selected at random from a list of over 100 words from a range of space related fields meaning most players should find themselves learning some new ones. 
@@ -130,18 +152,18 @@ The wireframes include page layouts for desktop, tablet and mobile screens with 
   ### Game Controls
   * The game controls section is how the player will interact with the game. The contents change depending on game state allowing the user to start the game, select the letters they wish to guess and choose to play again on either the win or loss game states. While selecting letters, the game displays the options in the format of a qwerty keyboard. This should help younger players to become more familiar with using this standard layout. 
 
-    <p align="center">
-    <img src="assets/images/readme-images/start-game.PNG" width="500px"/>
-    </p>
-    <p align="center">
-    <img src="assets/images/readme-images/you-win.PNG" width="500px"/>
-    </p>
-    <p align="center">
-    <img src="assets/images/readme-images/game-over.PNG" width="500px"/>
-    </p>
-    <p align="center">
-    <img src="assets/images/readme-images/keyboard.PNG" width="500px"/>
-    </p>
+  <p align="center">
+  <img src="assets/images/readme-images/start-game.PNG" width="500px"/>
+  </p>
+  <p align="center">
+  <img src="assets/images/readme-images/you-win.PNG" width="500px"/>
+  </p>
+  <p align="center">
+  <img src="assets/images/readme-images/game-over.PNG" width="500px"/>
+  </p>
+  <p align="center">
+  <img src="assets/images/readme-images/keyboard.PNG" width="500px"/>
+  </p>
 
 ## Testing
 
@@ -152,11 +174,13 @@ The wireframes include page layouts for desktop, tablet and mobile screens with 
 
   Site performance was tested using Google Chrome's Lighthouse tools in which it scored above 90 in all categories for both desktop and mobile. 
 
-  ### Desktop
+  ### Performance 
+  #### Desktop
   <p align="center">
     <img src="assets/images/readme-images/lighthouse-desktop.PNG" width="400px"/>
   </p>
-  ### Mobile
+
+  #### Mobile
   <p align="center">
     <img src="assets/images/readme-images/lighthouse-mobile.PNG" width="400px"/>
   </p>
@@ -175,6 +199,38 @@ The wireframes include page layouts for desktop, tablet and mobile screens with 
   </p>
 
   Javascript linting was handled by [ESLint](https://eslint.org/).
+
+  ### Cross Browser
+
+  Cross browser testing was carried out through the [crossbrowsertesting](https://app.crossbrowsertesting.com/test-center) web application. Through this app I tested the gameplay and navigation elements of the game as well as the visuals and responsive sizing on the following browsers and found no problems - 
+   * Google Chrome
+   * Mozilla Firefox 
+   * Microsoft Edge
+   * Opera 
+
+  ### Responsive Design
+
+  Comprehensive testing of the responsive design of the site was done through Chrome Dev Tools and [responsivetesttool.com](http://responsivetesttool.com/). Using these tools I was able to test the design on a huge range of screen sizes and have included an example each for mobile, tablet, laptop and desktop devices.
+
+  Mobile - 360 x 640px
+  <p align="center">
+    <img src="assets/images/readme-images/responsive-mobile.PNG" width="200px"/>
+  </p>
+
+  Tablet - 768 x 1024px
+  <p align="center">
+    <img src="assets/images/readme-images/responsive-tablet.PNG" width="200px"/>
+  </p>
+
+  Laptop - 1024 x 600px
+  <p align="center">
+    <img src="assets/images/readme-images/responsive-laptop.PNG" width="400px"/>
+  </p>
+
+  Desktop - 1920 x 1080px
+  <p align="center">
+    <img src="assets/images/readme-images/responsive-desktop.PNG" width="400px"/>
+  </p>
 
 ## Deployment GitHub Pages
  
