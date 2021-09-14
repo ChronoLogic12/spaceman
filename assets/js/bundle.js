@@ -485,6 +485,9 @@ const preventRightClick = () => {
 };
 
 const updateModalCheckbox = () => {
+    if (localStorage.getItem("showInstructionsOnStart") === null) {
+        localStorage.setItem("showInstructionsOnStart", "true");
+    }
     if (localStorage.getItem("showInstructionsOnStart") == "true") {
         $("#showInstructionsOnStart").prop('checked', true);
     } else {
