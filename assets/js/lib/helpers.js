@@ -73,7 +73,8 @@ const changeRocketImage = (url, desc) => {
 
 /*
 disables right click from opening the context menu. 
-This code was created using a guid. Please see README for full details.
+This code was created using a guid from w3schools (https://www.w3docs.com/snippets/javascript/how-to-disable-text-selection-copy-cut-paste-and-right-click-on-a-web-page.html). 
+Please see README for full details.
 */
 const preventRightClick = () => {
     $("body").on("contextmenu", function () {

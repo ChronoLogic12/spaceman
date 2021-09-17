@@ -180,6 +180,11 @@ const bindReplayHandlers = () => {
     });
 };
 
+/*
+Toggles visability of instructions modal. 
+This code was created with help from a guid from w3schools(https://www.w3schools.com/howto/howto_css_modals.asp). 
+Please see README for full details.
+*/
 const bindModalHandlers = () => {
     $("#info").click(function () {
         $("#modal").toggle();
