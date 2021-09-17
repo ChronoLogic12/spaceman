@@ -1,4 +1,4 @@
-# SPACEMAN - WEB BASED GAME
+# __SPACEMAN__ - WEB BASED GAME
 
  ### Code Institute Milestone Project 2 HTML/CSS/JAVASCRIPT - Interactive Front-End Development
 
@@ -6,7 +6,7 @@
     <img src="assets/images/readme-images/spaceman-logo.png" width="200px"/>
 </p>
 
-## About the game
+## __About the game__
 
  Spaceman is a space themed variant of the popular pen and paper game "Hangman". Crack the code and guess the space themed word to gain access to the rocket before it leaves on its adventure without you. The word you need to guess is represented by a series of dashes, each representing a letter. Attempt to guess the word by selecting one letter at a time from your keyboard or by clicking the keyboard on screen. Correct guesses will reveal the letter or letters within the word while incorrect guesses will bring the countdown to lift off closer to 0, whether you are ready or not.
 
@@ -16,7 +16,7 @@
     <img src="assets/images/readme-images/spaceman-responsive.PNG" width="1200px"/>
 </p>
 
-## Table of contents
+## __Table of contents__
 
  * [UX design](#ux-design)
     * [Project Goals](#project-goals)
@@ -36,7 +36,7 @@
 
  #### Developer note - For javascript code please see the library folder at /assets/js/lib/
 
-## UX design 
+## __UX design__
 
  ### Project Goals
 
@@ -87,7 +87,7 @@ The wireframes include page layouts for desktop, tablet and mobile screens with 
   The colours used were chosen to help differentiate the background and foreground elements. The brighter reds and yellows of the rocket and the off white of the tiles contrast with the dark blues of the background drawing attention to these elements. The tiles and game sections also have a subtle box shadow giving them a slight 3d effect upon the page further differentiating them from the background. All 'Active' tiles light up when hovered, changing to a brighter white with a different box shadow, giving tactile feedback to the player. Along with having no hover animation, 'Inactive' tiles are of a darker off white and less distinct box shadow. This makes it easy for players to determine what aspects of the game are currently interactive and which aren't. 
   The font used throughout is 'Roboto Mono'. This font is clear and easy to read and has a style that I feel fits well with the space aesthetic. 
 
-## Features
+## __Features__
 
   ### Start Screen
    * On load the page will display a simple start screen showing the rocket in its starting position on a starry background as well as a prompt for the player to select 'Start Game' when they are ready to proceed. 
@@ -160,11 +160,11 @@ The wireframes include page layouts for desktop, tablet and mobile screens with 
   <img src="assets/images/readme-images/keyboard.PNG" width="500px"/>
   </p>
 
-## Testing
+## __Testing__
 
-Please see the [Testign documentation](test.md) for full information.
+Please see the [Testign documentation](TESTING.md) for full information.
 
-## Deployment GitHub Pages
+## __Deployment GitHub Pages__
  
   The site was deployed through GitHub Pages using the following steps.
   * Navigate to the GitHub repository and select the Settings tab
@@ -172,7 +172,7 @@ Please see the [Testign documentation](test.md) for full information.
   * Use the dropdown menu in the source section to select the Master Branch. Click save.
   * Once the branch has been selected the page will update displaying: "Your site is published at https://chronologic12.github.io/spaceman/"
 
-## Credits 
+## __Credits__
 
   ### Content
   * [Font Awesome](https://fontawesome.com/) was used for SVG icons. 
