@@ -162,7 +162,7 @@ The wireframes include page layouts for desktop, tablet and mobile screens with 
 
 ## __Testing__
 
-Please see the [Testign documentation](TESTING.md) for full information.
+Please see the [Testing documentation](TESTING.md) for full information.
 
 ## __Deployment GitHub Pages__
  
