@@ -191,6 +191,8 @@ Please see the [Testign documentation](TESTING.md) for full information.
   * [w3schools](https://www.w3schools.com/) - general knowledge.
   * [MND Web Docs](https://developer.mozilla.org/en-US/) - general knowledge.
   * [Stack Overflow](https://stackoverflow.com/) - debugging. 
+  * [responsivetesttool.com](http://responsivetesttool.com/) - Responsive design testing.
+  * [crossbrowsertesting](https://app.crossbrowsertesting.com/test-center) - Cross browser testing.
   * Collapsible modal was designed with help from [this article](https://www.w3schools.com/howto/howto_css_modals.asp) on W3schools.
   * To disable the right click event I followed [this guid](https://www.w3docs.com/snippets/javascript/how-to-disable-text-selection-copy-cut-paste-and-right-click-on-a-web-page.html) on W3docs.
   * Box shadow soft UI tiles were created with help from [Neumorphism.io](https://neumorphism.io/#dedfe8).
